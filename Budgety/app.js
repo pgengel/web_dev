@@ -123,6 +123,9 @@ var UIController = (function() {
             fieldsArr.forEach(function(curr, index, array) {
                 curr.value = "";    
             });
+
+            //set focus on 1st element which is the desc.
+            fieldsArr[0].focus();
         },
 
         getDOMStrings : function() {
