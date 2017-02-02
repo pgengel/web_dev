@@ -7,9 +7,11 @@ GAME RULES:
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
 - The first player to reach 100 points on GLOBAL score wins the game
 
+
+
 */
 
-var scores, roundScores, activePlayer, gamePlaying;
+var scores, roundScores, activePlayer, gamePlaying, prevDice, scoreLimit = 100;
 
 init ();
 
@@ -33,6 +35,7 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
     if(gamePlaying){
         // 1. Need a random number.
         var dice = Math.floor(Math.random() * 6) + 1;//local var
+
         // 2. Display the result.
         var diceDOM = document.querySelector('.dice'); 
         diceDOM.style.display = 'block';
@@ -40,13 +43,26 @@ document.querySelector('.btn-roll').addEventListener('click', function (){
         document.querySelector('#current-' + activePlayer).textContent = dice;
         // 3. Update the round score IF the rolled number was not 1.
 
-        if (dice !== 1){
-            //add score
-            roundScores += dice;
+        if( dice === 6 && prevDice === 6){
+            //strike one
+            roundScores = 0;
+            scores[activePlayer] = 0;
             document.querySelector('#current-' + activePlayer).textContent = roundScores;
-        } else{
+            document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
             nextPlayer();
-        } 
+        } else{
+            if (dice !== 1){
+                //add score
+                prevDice = dice;
+                roundScores += dice;
+                document.querySelector('#current-' + activePlayer).textContent = roundScores;
+            } 
+            else {
+                nextPlayer();
+            }
+        }
+
+ 
     } 
 });
 //anonomys functions are used when a function will not be reused.
@@ -61,7 +77,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
         
         // check if the player won the game
-        if(scores[activePlayer] >= 20){
+        if(scores[activePlayer] >= scoreLimit){
             document.querySelector('.player-name').textContent = 'Winner';
             document.querySelector('.player-'+ activePlayer +'-panel').classList.add('winner');
             document.querySelector('.player-'+ activePlayer +'-panel').classList.remove('active');
@@ -75,6 +91,10 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
 
 document.querySelector('.btn-new').addEventListener('click', init);
 
+document.querySelector('#btn-submit-score-limit').addEventListener('click', function () { 
+    scoreLimit = document.getElementById('score-limit').value;
+ });
+
 function nextPlayer () {
     // Next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
@@ -86,14 +106,16 @@ function nextPlayer () {
     //document.querySelector('.player-0-panel').classList.remove('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
     document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.dice').style.display = 'none'; 
 
-    diceDOM.style.display = 'none';
 }
+
 
 function init () {
     scores = [0,0];
     roundScores = 0;
     activePlayer = 0;
+    prevDice = 0;
     gamePlaying = true;
 
         //hide the dice in the beginning.
