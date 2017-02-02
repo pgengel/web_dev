@@ -92,7 +92,7 @@ var budegetController = (function() {
                 budget: data.budget,
                 totaIncome: data.totals.inc,
                 totalExpenses: data.totals.exp,
-                percentages : data.percentage
+                percentage : data.percentage
             }    
         },
 
@@ -114,6 +114,10 @@ var UIController = (function() {
         inputBtn : '.add__btn',
         incomeContainer : '.income__list',
         expenseContainer : '.expenses__list',
+        budgetLabel : '.budget__value',
+        budgetIncomeLabel : '.budget__income--value',
+        budgetExpenseLabel: '.budget__expenses--value',
+        budgetPercentageLabel: '.budget__expenses--percentage',
     };
 
     return {
@@ -166,6 +170,19 @@ var UIController = (function() {
             fieldsArr[0].focus();
         },
 
+        displayBudget : function(obj) {
+            document.querySelector(DOMStrings.budgetLabel).textContent = obj.budget;
+            document.querySelector(DOMStrings.budgetIncomeLabel).textContent = obj.totaIncome;
+            document.querySelector(DOMStrings.budgetExpenseLabel).textContent = obj.totalExpenses;
+           
+            if(obj.percentage > 0){
+                document.querySelector(DOMStrings.budgetPercentageLabel).textContent = obj.percentage + '%';
+            } else{
+                 document.querySelector(DOMStrings.budgetPercentageLabel).textContent = "---";
+            }
+
+        },
+
         getDOMStrings : function() {
             return DOMStrings;
         },
@@ -202,6 +219,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         var budget = budgetCtrl.getBudget();
 
         //5.3. Display the budget on the UI.
+        UICtrl.displayBudget(budget);
     }
 
     var ctrlAddItem = function() {
@@ -230,6 +248,12 @@ var controller = (function(budgetCtrl, UICtrl) {
     return {
         init : function() {
             console.log('Application has started.');
+            UICtrl.displayBudget({
+                budget: 0,
+                totalExpenses : 0,
+                totalExpenses : 0,
+                percentage : -1
+            });
             setupEventListeners();
         }
     };
