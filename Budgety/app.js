@@ -4,9 +4,9 @@
 var budegetController = (function() {
 
     // Expense function constrcutor.
-    var Expense = function(id, desciption, value) {
+    var Expense = function(id, description, value) {
         this.id = id;
-        this.desciption = desciption;
+        this.description = description;
         this.value = value;
         this.percentage = -1;
     };   
@@ -24,9 +24,9 @@ var budegetController = (function() {
     };
 
     // Income function constrcutor.
-    var Income = function(id, desciption, value) {
+    var Income = function(id, description, value) {
         this.id = id;
-        this.desciption = desciption;
+        this.description = description;
         this.value = value;
     };   
 
@@ -197,7 +197,7 @@ var UIController = (function() {
             return {
                 //return an object with these 3 things
                 type : document.querySelector(DOMStrings.inputType).value,// Will be either inc or exp
-                desciption : document.querySelector(DOMStrings.inputDescription).value,
+                description : document.querySelector(DOMStrings.inputDescription).value,
                 value : parseFloat(document.querySelector(DOMStrings.inputValue).value),
             };
         },
@@ -219,7 +219,7 @@ var UIController = (function() {
            
             // replace placeholder tags with with actual data
             newHtml = html.replace('%id%', obj.id);
-            newHtml = newHtml.replace('%description%', obj.desciption);
+            newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
 
             // insert the HTML into the DOM.
@@ -369,9 +369,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         //1. Get the field input data from the UI.
         input = UICtrl.getInput();
 
-        if(input.desciption !== "" || !isNan(input.value) && input.value > 0){
+        if(input.description !== "" || !isNan(input.value) && input.value > 0){
             //2. Add the item to the budget controller.
-            newItem = budgetCtrl.addItem(input.type, input.desciption, input.value);
+            newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
             //3. Add the item to the UI
             UICtrl.addListItem(newItem, input.type);
