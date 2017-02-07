@@ -224,7 +224,7 @@ $("document").ready(function() {
                 newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
 
                 // insert the HTML into the DOM.
-                document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+                $(element).append(newHtml);
             },
 
             deleteListItem : function(selectorID) {
@@ -235,7 +235,7 @@ $("document").ready(function() {
 
             clearFields: function() {
                 var fields, fieldsArr;
-                fields = document.querySelectorAll(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);
+                fields = $(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);
 
                 fieldsArr = Array.prototype.slice.call(fields);   
 
@@ -261,7 +261,6 @@ $("document").ready(function() {
                 } else{
                     $(DOMStrings.budgetPercentageLabel).text("---");
                 }
-
             },
 
             //going to receive a perc arr
@@ -269,15 +268,14 @@ $("document").ready(function() {
                 //we do not know how many item__perctages there will be. Select them all. 
 
                 //this will return nodelist - loop through the nodes
-                var fields = document.querySelectorAll(DOMStrings.expensesPercentageLabel);
+                var fields = $(DOMStrings.expensesPercentageLabel);
 
                 nodeListForEach(fields, function(current, index){
                     if(percentages[index] > 0){
                         current.textContent = percentages[index] + '%';
                     } else{
                         current.textContent = '---';
-                    }
-                    
+                    }               
                 });
 
             },
@@ -289,14 +287,11 @@ $("document").ready(function() {
                 year = now.getFullYear();
                 month = now.getMonth();
                 $(DOMStrings.dateLabel).text(months[month] + ' ' + year);
-
-
-
             },
 
             changedType : function(arguments) {
                 // The best way to change styles is to change the html.
-                var fields = document.querySelectorAll(
+                var fields = $(
                     DOMStrings.inputType + ',' + 
                     DOMStrings.inputDescription + ',' +
                     DOMStrings.inputValue);
