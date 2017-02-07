@@ -1,0 +1,15 @@
+{
+  "name": "budgety",
+  "version": "1.0.0",
+  "description": "Make a travel budget app\r \tadd friends like from wassup or numbers.\r \tadd items to then list and assign a person from the contact.\r \tSync the information between the users.\r \tadd a devide  by the number of ppl. has to do the calculation and pertange\r \ta person can accept the alication or reject with a note.\r \tstore profiles in a database.\r \tretrieve data from the database.\r \tReplace the document.queryselector with jquery",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pieter",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.5.3",
+    "jquery" : "^3.1.1"
+  }
+}
