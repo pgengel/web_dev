@@ -228,8 +228,8 @@ $("document").ready(function() {
             },
 
             deleteListItem : function(selectorID) {
-                var el = document.getElementById(selectorID);
-                el.parentNode.removeChild(el);
+                var el = $("#" + selectorID);
+                el.remove();
                 //document.getElementById(selectorID).parentNode.removeChild()    
             },
 
