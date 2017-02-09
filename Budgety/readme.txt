@@ -15,8 +15,7 @@ update the code with ES6.
 
 ref - http://codingheroes.io/resources/
 
-put the things in names spaces using IFFES
-seperate the into files
+put the things in names spaces using IFFES, and shorten the files to 120 lines
 Make and account class and inherenst
-Use components.
+
 

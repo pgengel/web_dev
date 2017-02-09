@@ -1,22 +1,7 @@
 //UI COMPONENT
-var UIComponent = (function() {
-    
-    //List of the DOM elements that will serve as constants
-    var DOMStrings = {
-        inputType : '.add__type',
-        inputDescription : '.add__description',
-        inputValue : '.add__value',
-        inputBtn : '.add__btn',
-        incomeContainer : '.income__list',
-        expenseContainer : '.expenses__list',
-        budgetLabel : '.budget__value',
-        budgetIncomeLabel : '.budget__income--value',
-        budgetExpenseLabel: '.budget__expenses--value',
-        budgetPercentageLabel: '.budget__expenses--percentage',
-        container : '.container',
-        expensesPercentageLabel : '.item__percentage',
-        dateLabel : '.budget__title--month',
-    };
+var UIComponent = (function(DOMstr) {
+    var DOMStrings = DOMstr.indexStrings;
+    // //List of the DOM elements that will serve as constants
 
     var formatNumber = function(num, type) {
         // + - before a number, exactly 2 dec points, comma seperate the thousands.
@@ -202,4 +187,4 @@ var UIComponent = (function() {
         addListItem : addListItem,
     };
 
-})();
+})(DOM);
