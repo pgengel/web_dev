@@ -54,91 +54,95 @@
 
         }
 
-        return {
-            addItem :  function(type, des, val) {
-                var newItem, ID;
-                
-                //create new ID
-                if(data.allitems[type].length > 0){
-                    ID = data.allitems[type][data.allitems[type].length - 1].id + 1;
-                } else {
-                    ID = 0;
-                }
-                
-                //create new  inc
-                if(type === 'inc'){
-                    newItem = new Income(ID, des, val); 
-                }
-
-                if(type === 'exp'){
-                    newItem = new Expense(ID, des, val); 
-                }
-                
-                // Push in into our data struct
-                data.allitems[type].push(newItem);
-
-                //return new Item
-                return newItem;
-            },
-
-            deleteItem : function(type, id) {
-                var ids, index;
-
-                //This does not work.
-                ids = (data.allitems[type]).map(function(current) {
-                    return current.id;
-                });
-
-                index = ids.indexOf(id);
-
-                if(index !== -1){
-                    data.allitems[type].splice(index, 1);
-                }
-            },
-
-            calculateBudget : function() {
-                // calculate total income and expenses
-                calculateTotal('exp');
-                calculateTotal('inc');
-
-                //calculate the budget: income  - expenses
-                data.budget = data.totals.inc - data.totals.exp;
-
-                //calculate the percentage of the the income that we spent.
-                if(data.totals.inc > 0){
-                    data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
-                } else{
-                    data.percentage = -1;
-                }        
-
-            },
-
-            calculatePercentages: function() {
-                data.allitems.exp.forEach(function(cur) {
-                    cur.calcPercentage(data.totals.inc);
-                });
-            },
-
-            getPercentages : function() {
-                var allPerc = data.allitems.exp.map(function(cur){
-                    return cur.getPercentage();
-                });
-
-                return allPerc;
-            },
-
-            getBudget : function() {
-                return {
-                    budget: data.budget,
-                    totalIncome: data.totals.inc,
-                    totalExpenses: data.totals.exp,
-                    percentage : data.percentage
-                }    
-            },
-
-            testing : function() {
-                console.log(data);
+        // Public method
+        var addItem = function(type, des, val) {
+            var newItem, ID;
+            
+            //create new ID
+            if(data.allitems[type].length > 0){
+                ID = data.allitems[type][data.allitems[type].length - 1].id + 1;
+            } else {
+                ID = 0;
             }
+            
+            //create new  inc
+            if(type === 'inc'){
+                newItem = new Income(ID, des, val); 
+            }
+
+            if(type === 'exp'){
+                newItem = new Expense(ID, des, val); 
+            }
+            
+            // Push in into our data struct
+            data.allitems[type].push(newItem);
+
+            //return new Item
+            return newItem;
+        };
+
+        var deleteItem = function(type, id) {
+            var ids, index;
+
+            //This does not work.
+            ids = (data.allitems[type]).map(function(current) {
+                return current.id;
+            });
+
+            index = ids.indexOf(id);
+
+            if(index !== -1){
+                data.allitems[type].splice(index, 1);
+            }
+        };
+
+        var calculateBudget = function() {
+            // calculate total income and expenses
+            calculateTotal('exp');
+            calculateTotal('inc');
+
+            //calculate the budget: income  - expenses
+            data.budget = data.totals.inc - data.totals.exp;
+
+            //calculate the percentage of the the income that we spent.
+            if(data.totals.inc > 0){
+                data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+            } else{
+                data.percentage = -1;
+            }        
+
+        };
+
+        var calculatePercentages = function() {
+            data.allitems.exp.forEach(function(cur) {
+                cur.calcPercentage(data.totals.inc);
+            });
+        };
+
+        var getPercentages = function() {
+            var allPerc = data.allitems.exp.map(function(cur){
+                return cur.getPercentage();
+            });
+
+            return allPerc;
+        };
+
+        var getBudget = function() {
+            return {
+                budget: data.budget,
+                totalIncome: data.totals.inc,
+                totalExpenses: data.totals.exp,
+                percentage : data.percentage
+            }    
+        };
+
+        return {
+            addItem :  addItem,
+            deleteItem : deleteItem,
+            calculateBudget : calculateBudget,
+            calculatePercentages: calculatePercentages,
+            getPercentages : getPercentages,
+            getBudget : getBudget,
         };
 
     })();
@@ -335,7 +339,6 @@
         };
 
         return {
-
             // get the inputs from the UI
             getInput: getInput,
             deleteListItem : deleteListItem,
@@ -346,7 +349,6 @@
             getDOMStrings : getDOMStrings,
             changedType : changedType,
             addListItem : addListItem,
-
         };
 
     })();
