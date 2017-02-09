@@ -1,5 +1,5 @@
 //BUDGET COMPONENT
-var budegetComponent = (function() {
+var budegetComponent = (function(budgetMdl) {
 
     // Expense function constrcutor.
     var Expense = function(id, description, value) {
@@ -30,11 +30,11 @@ var budegetComponent = (function() {
 
     var calculateTotal = function(type) {
         var sum = 0;
-        data.allitems[type].forEach(function(cur) {
+        budgetMdl.data.allitems[type].forEach(function(cur) {
             sum = sum + cur.value;
         });
 
-        data.totals[type] = sum;
+        budgetMdl.data.totals[type] = sum;
     }
 
     // Public method
@@ -42,8 +42,8 @@ var budegetComponent = (function() {
         var newItem, ID;
         
         //create new ID
-        if(data.allitems[type].length > 0){
-            ID = data.allitems[type][data.allitems[type].length - 1].id + 1;
+        if(budgetMdl.data.allitems[type].length > 0){
+            ID = budgetMdl.data.allitems[type][budgetMdl.data.allitems[type].length - 1].id + 1;
         } else {
             ID = 0;
         }
@@ -57,8 +57,8 @@ var budegetComponent = (function() {
             newItem = new Expense(ID, des, val); 
         }
         
-        // Push in into our data struct
-        data.allitems[type].push(newItem);
+        // Push in into our budgetMdl.data struct
+        budgetMdl.data.allitems[type].push(newItem);
 
         //return new Item
         return newItem;
@@ -68,14 +68,14 @@ var budegetComponent = (function() {
         var ids, index;
 
         //This does not work.
-        ids = (data.allitems[type]).map(function(current) {
+        ids = (budgetMdl.data.allitems[type]).map(function(current) {
             return current.id;
         });
 
         index = ids.indexOf(id);
 
         if(index !== -1){
-            data.allitems[type].splice(index, 1);
+            budgetMdl.data.allitems[type].splice(index, 1);
         }
     };
 
@@ -85,25 +85,25 @@ var budegetComponent = (function() {
         calculateTotal('inc');
 
         //calculate the budget: income  - expenses
-        data.budget = data.totals.inc - data.totals.exp;
+        budgetMdl.data.budget = budgetMdl.data.totals.inc - budgetMdl.data.totals.exp;
 
         //calculate the percentage of the the income that we spent.
-        if(data.totals.inc > 0){
-            data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+        if(budgetMdl.data.totals.inc > 0){
+            budgetMdl.data.percentage = Math.round((budgetMdl.data.totals.exp / budgetMdl.data.totals.inc) * 100);
         } else{
-            data.percentage = -1;
+            budgetMdl.data.percentage = -1;
         }        
 
     };
 
     var calculatePercentages = function() {
-        data.allitems.exp.forEach(function(cur) {
-            cur.calcPercentage(data.totals.inc);
+        budgetMdl.data.allitems.exp.forEach(function(cur) {
+            cur.calcPercentage(budgetMdl.data.totals.inc);
         });
     };
 
     var getPercentages = function() {
-        var allPerc = data.allitems.exp.map(function(cur){
+        var allPerc = budgetMdl.data.allitems.exp.map(function(cur){
             return cur.getPercentage();
         });
 
@@ -112,10 +112,10 @@ var budegetComponent = (function() {
 
     var getBudget = function() {
         return {
-            budget: data.budget,
-            totalIncome: data.totals.inc,
-            totalExpenses: data.totals.exp,
-            percentage : data.percentage
+            budget: budgetMdl.data.budget,
+            totalIncome: budgetMdl.data.totals.inc,
+            totalExpenses: budgetMdl.data.totals.exp,
+            percentage : budgetMdl.data.percentage
         }    
     };
 
@@ -128,4 +128,4 @@ var budegetComponent = (function() {
         getBudget : getBudget,
     };
 
-})();
+})(budgetModel);

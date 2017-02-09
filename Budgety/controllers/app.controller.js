@@ -1,9 +1,9 @@
 // GLOBAL APP CONTROLLER
-var controller = (function(budgetCtrl, UICtrl) {
+var controller = (function(budgetCom, UICom) {
 
     var setupEventListeners = function() {
         
-        var DOM = UICtrl.getDOMStrings();
+        var DOM = UICom.getDOMStrings();
         
         //event listiner
         $(DOM.inputBtn).on('click', ctrlAddItem);
@@ -19,28 +19,28 @@ var controller = (function(budgetCtrl, UICtrl) {
 
         $(DOM.container).on('click', ctrlDeleteItem);
 
-        $(DOM.inputType).on('change', UICtrl.changedType)
+        $(DOM.inputType).on('change', UICom.changedType)
 
     }
 
     var updateBudget = function() {
         //5.1. Calculate the budget
-        budgetCtrl.calculateBudget();
+        budgetCom.calculateBudget();
 
         //5.2. Return the budget
-        var budget = budgetCtrl.getBudget();
+        var budget = budgetCom.getBudget();
 
         //5.3. Display the budget on the UI.
-        UICtrl.displayBudget(budget);
+        UICom.displayBudget(budget);
     }
 
     var updatePercentages = function(){
         
         //1. calculate the percetages
-        budgetCtrl.calculatePercentages();
+        budgetCom.calculatePercentages();
 
         //2. read from the budget controller
-        var percentages = budgetCtrl.getPercentages();
+        var percentages = budgetCom.getPercentages();
 
         //3. update the UI with the new percentages.     
         UIComponent.displayPercentages(percentages);
@@ -50,17 +50,17 @@ var controller = (function(budgetCtrl, UICtrl) {
         var input, newItem;
 
         //1. Get the field input data from the UI.
-        input = UICtrl.getInput();
+        input = UICom.getInput();
 
         if(input.description !== "" || !isNan(input.value) && input.value > 0){
             //2. Add the item to the budget controller.
-            newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+            newItem = budgetCom.addItem(input.type, input.description, input.value);
 
             //3. Add the item to the UI
-            UICtrl.addListItem(newItem, input.type);
+            UICom.addListItem(newItem, input.type);
 
             //4. Clear the fields
-            UICtrl.clearFields();
+            UICom.clearFields();
 
             //5. Call update the budget
             updateBudget();
@@ -86,10 +86,10 @@ var controller = (function(budgetCtrl, UICtrl) {
             ID = parseInt(splitID[1]);
 
             // 1. Delete the item from the data struct
-            budgetCtrl.deleteItem(type, ID);
+            budgetCom.deleteItem(type, ID);
 
             // 2. Delete the item from the the user interface
-            UICtrl.deleteListItem(itemID);
+            UICom.deleteListItem(itemID);
 
             // 3. Update and show the new budget. 
             updateBudget();
@@ -105,10 +105,10 @@ var controller = (function(budgetCtrl, UICtrl) {
             $("document").ready(function() {});
             
             // Get and display the date.
-            UICtrl.displayMonth();
+            UICom.displayMonth();
             
             // Reset the budget.
-            UICtrl.displayBudget({
+            UICom.displayBudget({
                 budget: 0,
                 totalIncome : 0,
                 totalExpenses : 0,
