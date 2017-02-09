@@ -1,4 +1,4 @@
-$("document").ready(function() {
+
     //module pattern - we create IIFE to create a new scope - x and add function is not available from the console.
 
     //BUDGET CONTROLLER
@@ -25,7 +25,7 @@ $("document").ready(function() {
         };
 
         // Income function constrcutor.
-        var Income = function(id, description, value) {
+        var Income = function (id, description, value) {
             this.id = id;
             this.description = description;
             this.value = value;
@@ -53,8 +53,6 @@ $("document").ready(function() {
             percentage : -1
 
         }
-
-    
 
         return {
             addItem :  function(type, des, val) {
@@ -191,121 +189,163 @@ $("document").ready(function() {
             }
         };
 
+        // Public method
+        var getInput = function() {                 
+            return {
+                //return an object with these 3 things
+                type : $(DOMStrings.inputType).val(),// Will be either inc or exp
+                description : $(DOMStrings.inputDescription).val(),
+                value : parseFloat($(DOMStrings.inputValue).val()),
+            };
+        };
+
+        // Public method
+        var addListItem = function(obj, type) {
+            var html, newHtml, element;
+            
+            if(type === 'inc'){
+                element = DOMStrings.incomeContainer;
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            
+            if(type === 'exp'){
+                element = DOMStrings.expenseContainer;
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            // create html strings with placeholder tags
+    
+        
+            // replace placeholder tags with with actual data
+            newHtml = html.replace('%id%', obj.id);
+            newHtml = newHtml.replace('%description%', obj.description);
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
+
+            // insert the HTML into the DOM.
+            $(element).append(newHtml);
+        };
+
+        // Public method
+        var deleteListItem = function(selectorID) {
+            var el = $("#" + selectorID);
+            el.remove();
+            //document.getElementById(selectorID).parentNode.removeChild()    
+        };
+
+        // Public method
+        var clearFields = function() {
+            var fields, fieldsArr;
+            fields = $(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);
+
+            fieldsArr = Array.prototype.slice.call(fields);   
+
+            fieldsArr.forEach(function(curr, index, array) {
+                curr.value = "";    
+            });
+
+            //set focus on 1st element which is the desc.
+            fieldsArr[0].focus();
+        };
+
+        // Public method
+        var displayBudget = function(obj) {
+            var type;
+
+            obj.budget > 0 ? type = 'inc' : type = 'exp';
+
+            $(DOMStrings.budgetLabel).text(formatNumber(obj.budget, type));
+            $(DOMStrings.budgetIncomeLabel).text(formatNumber(obj.totalIncome, 'inc'));
+            $(DOMStrings.budgetExpenseLabel).text(formatNumber(obj.totalExpenses, 'exp'));
+        
+            if(obj.percentage > 0){
+                $(DOMStrings.budgetPercentageLabel).text(obj.percentage + '%');
+            } else{
+                $(DOMStrings.budgetPercentageLabel).text("---");
+            }
+        };
+
+        // Public method
+        var displayPercentages = function(percentages) {
+            //we do not know how many item__perctages there will be. Select them all. 
+
+            //this will return nodelist - loop through the nodes
+            var fields = $(DOMStrings.expensesPercentageLabel);
+
+            nodeListForEach(fields, function(current, index){
+                if(percentages[index] > 0){
+                    current.textContent = percentages[index] + '%';
+                } else{
+                    current.textContent = '---';
+                }               
+            });
+
+        };
+
+        // Public method
+        var displayMonth = function() {
+            var now, year, month;
+            now = new Date(); //return todays date.
+            months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec']
+            year = now.getFullYear();
+            month = now.getMonth();
+            $(DOMStrings.dateLabel).text(months[month] + ' ' + year);
+        };
+
+        var getDOMStrings = function() {
+            return DOMStrings;
+        };
+
+        // Public method
+        var changedType = function() {
+            // The best way to change styles is to change the html.
+            var fields = $(
+                DOMStrings.inputType + ',' + 
+                DOMStrings.inputDescription + ',' +
+                DOMStrings.inputValue);
+
+            nodeListForEach(fields, function(cur) {
+                cur.classList.toggle('red-focus');
+            });
+
+            $(DOMStrings.inputBtn).toggleClass('red');
+        }; 
+
+        // Public method
+        var addListItem = function(obj, type) {
+            var html, newHtml, element;
+            
+            if(type === 'inc'){
+                element = DOMStrings.incomeContainer;
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            
+            if(type === 'exp'){
+                element = DOMStrings.expenseContainer;
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            // create html strings with placeholder tags
+    
+        
+            // replace placeholder tags with with actual data
+            newHtml = html.replace('%id%', obj.id);
+            newHtml = newHtml.replace('%description%', obj.description);
+            newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
+
+            // insert the HTML into the DOM.
+            $(element).append(newHtml);
+        };
+
         return {
 
             // get the inputs from the UI
-            getInput: function() {                 
-                return {
-                    //return an object with these 3 things
-                    type : $(DOMStrings.inputType).val(),// Will be either inc or exp
-                    description : $(DOMStrings.inputDescription).val(),
-                    value : parseFloat($(DOMStrings.inputValue).val()),
-                };
-            },
-
-            addListItem: function(obj, type) {
-                var html, newHtml, element;
-                
-                if(type === 'inc'){
-                    element = DOMStrings.incomeContainer;
-                    html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
-                }
-                
-                if(type === 'exp'){
-                    element = DOMStrings.expenseContainer;
-                    html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
-                }
-                // create html strings with placeholder tags
-        
-            
-                // replace placeholder tags with with actual data
-                newHtml = html.replace('%id%', obj.id);
-                newHtml = newHtml.replace('%description%', obj.description);
-                newHtml = newHtml.replace('%value%', formatNumber(obj.value, type));
-
-                // insert the HTML into the DOM.
-                $(element).append(newHtml);
-            },
-
-            deleteListItem : function(selectorID) {
-                var el = $("#" + selectorID);
-                el.remove();
-                //document.getElementById(selectorID).parentNode.removeChild()    
-            },
-
-            clearFields: function() {
-                var fields, fieldsArr;
-                fields = $(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);
-
-                fieldsArr = Array.prototype.slice.call(fields);   
-
-                fieldsArr.forEach(function(curr, index, array) {
-                    curr.value = "";    
-                });
-
-                //set focus on 1st element which is the desc.
-                fieldsArr[0].focus();
-            },
-
-            displayBudget : function(obj) {
-                var type;
-
-                obj.budget > 0 ? type = 'inc' : type = 'exp';
-
-                $(DOMStrings.budgetLabel).text(formatNumber(obj.budget, type));
-                $(DOMStrings.budgetIncomeLabel).text(formatNumber(obj.totalIncome, 'inc'));
-                $(DOMStrings.budgetExpenseLabel).text(formatNumber(obj.totalExpenses, 'exp'));
-            
-                if(obj.percentage > 0){
-                    $(DOMStrings.budgetPercentageLabel).text(obj.percentage + '%');
-                } else{
-                    $(DOMStrings.budgetPercentageLabel).text("---");
-                }
-            },
-
-            //going to receive a perc arr
-            displayPercentages : function(percentages) {
-                //we do not know how many item__perctages there will be. Select them all. 
-
-                //this will return nodelist - loop through the nodes
-                var fields = $(DOMStrings.expensesPercentageLabel);
-
-                nodeListForEach(fields, function(current, index){
-                    if(percentages[index] > 0){
-                        current.textContent = percentages[index] + '%';
-                    } else{
-                        current.textContent = '---';
-                    }               
-                });
-
-            },
-
-            displayMonth : function() {
-                var now, year, month;
-                now = new Date(); //return todays date.
-                months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec']
-                year = now.getFullYear();
-                month = now.getMonth();
-                $(DOMStrings.dateLabel).text(months[month] + ' ' + year);
-            },
-
-            changedType : function(arguments) {
-                // The best way to change styles is to change the html.
-                var fields = $(
-                    DOMStrings.inputType + ',' + 
-                    DOMStrings.inputDescription + ',' +
-                    DOMStrings.inputValue);
-
-                nodeListForEach(fields, function(cur) {
-                    cur.classList.toggle('red-focus');
-                });
-
-                $(DOMStrings.inputBtn).toggleClass('red');
-            },
-
-            getDOMStrings : function() {
-                return DOMStrings;
-            },
+            getInput: getInput,
+            deleteListItem : deleteListItem,
+            clearFields : clearFields,
+            displayBudget : displayBudget,
+            displayPercentages : displayPercentages,
+            displayMonth : displayMonth,
+            getDOMStrings : getDOMStrings,
+            changedType : changedType,
+            addListItem : addListItem,
 
         };
 
@@ -410,18 +450,30 @@ $("document").ready(function() {
 
         };
 
-        return {
-            init : function() {
+        // public
+        var init = function() {
                 console.log('Application has started.');
+
+                // Load JQuery.
+                $("document").ready(function() {});
+                
+                // Get and display the date.
                 UICtrl.displayMonth();
+                
+                // Reset the budget.
                 UICtrl.displayBudget({
                     budget: 0,
                     totalIncome : 0,
                     totalExpenses : 0,
                     percentage : -1
                 });
+
+                // Init the event listeners.
                 setupEventListeners();
-            }
+        };
+
+        return {
+            init : init
         };
 
     })(budegetController, UIController);
@@ -430,4 +482,3 @@ $("document").ready(function() {
 
 
    
-});
