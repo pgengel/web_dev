@@ -1,5 +1,5 @@
 // GLOBAL APP CONTROLLER
-var controller = (function(budgetCom, UICom) {
+var appController = (function(budgetCom, UICom) {
 
     var setupEventListeners = function() {
         

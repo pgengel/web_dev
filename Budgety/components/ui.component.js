@@ -1,7 +1,8 @@
 //UI COMPONENT
 var UIComponent = (function(DOMstr) {
+    
+    // Dependancy inject the dom strings.
     var DOMStrings = DOMstr.indexStrings;
-    // //List of the DOM elements that will serve as constants
 
     var formatNumber = function(num, type) {
         // + - before a number, exactly 2 dec points, comma seperate the thousands.
@@ -52,8 +53,7 @@ var UIComponent = (function(DOMstr) {
             element = DOMStrings.expenseContainer;
             html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
         }
-        // create html strings with placeholder tags
-
+        // create html strings with placeholder tag
     
         // replace placeholder tags with with actual data
         newHtml = html.replace('%id%', obj.id);

@@ -1,5 +1,5 @@
-
-controller.init();
+//start app
+appController.init();
 
 
    
