@@ -422,7 +422,6 @@
 
                 //6. Calculate and update the percentages
                 updatePercentages();
-
             }
 
         };
