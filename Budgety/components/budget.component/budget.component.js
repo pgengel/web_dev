@@ -1,35 +1,14 @@
 //BUDGET COMPONENT
-var budegetComponent = (function(budgetMdl) {
+var budegetComponent = (function(budgetMdl, incomeCom, expenseCom) {
     
-    // dependancy inject the budgetModel
+    // Dependancy inject the budgetModel
     var Budget = budgetMdl.data;
 
-    // Expense function constrcutor.
-    var Expense = function(id, description, value) {
-        this.id = id;
-        this.description = description;
-        this.value = value;
-        this.percentage = -1;
-    };   
+    // Dependancy inject the Expense function constrcutor.
+    var Expense = expenseCom.Expenses;
 
-    Expense.prototype.calcPercentage = function(totalIncome) {
-        if(totalIncome > 0){
-            this.percentage = Math.round((this.value / totalIncome) * 100); 
-        } else{
-            this.percentage = -1;
-        }
-    };  
-
-    Expense.prototype.getPercentage = function() {
-        return this.percentage;
-    };
-
-    // Income function constrcutor.
-    var Income = function (id, description, value) {
-        this.id = id;
-        this.description = description;
-        this.value = value;
-    };   
+    // Dependancy inject the Income function constrcutor.
+    var Income = incomeCom.Incomes;   
 
     var calculateTotal = function(type) {
         var sum = 0;
@@ -131,4 +110,4 @@ var budegetComponent = (function(budgetMdl) {
         getBudget : getBudget,
     };
 
-})(budgetModel);
+})(budgetModel, incomeComponent, expenseComponent);
