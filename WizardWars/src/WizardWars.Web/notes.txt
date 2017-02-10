@@ -1,0 +1,12 @@
+
+npm init
+npm install express
+npm install socket.io
+node app.component.js
+
+
+Other notes:
+File coms - express
+Package coms - socket.
+In the web browser:
+    localhost:3000

@@ -1,0 +1,19 @@
+{
+  "name": "wizardwars",
+  "version": "1.0.0",
+  "description": "html5 game",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@digit.mgsops.net:Pieteren/html5-multiplayer.git"
+  },
+  "author": "Pieter Engelbrecht",
+  "license": "ISC"
+}
