@@ -21,3 +21,6 @@ console.log("Server started.");
 var WIDTH = 500;
 var HEIGHT = 500;
 var socket = io();
+
+var initPack = {player:[],bullet:[]};
+var removePack = {player:[],bullet:[]};
