@@ -1,79 +1,83 @@
-var Player = function(param){
-	var self = Entity(param);
-	self.id = param.id;
-	self.number = "" + Math.floor(10 * Math.random());
-	self.pressingRight = false;
-	self.pressingLeft = false;
-	self.pressingUp = false;
-	self.pressingDown = false;
-	self.pressingAttack = false;
-	self.mouseAngle = 0;
-	self.maxSpd = 10;
-    self.hp = 10;
-    self.hpMax = 10;
-    self.score = 0;
+var PlayerComponent = (function(IEntity, param, CBullet){
 	
-	var super_update = self.update;
-	self.update = function(){
-		self.updateSpd();
+    var Player = IEntity.EntityInterface(param);
+	
+    Player.prototype.id = param.id;
+	Player.prototype.number = "" + Math.floor(10 * Math.random());
+	Player.prototype.pressingRight = false;
+	Player.prototype.pressingLeft = false;
+	Player.prototype.pressingUp = false;
+	Player.prototype.pressingDown = false;
+	Player.prototype.pressingAttack = false;
+	Player.prototype.mouseAngle = 0;
+	Player.prototype.maxSpd = 10;
+    Player.prototype.hp = 10;
+    Player.prototype.hpMax = 10;
+    Player.prototype.score = 0;
+	
+	var super_update = this.update;
+
+	Player.prototype.update = function(){
+		this.updateSpd();
 		super_update();
 		
-		if(self.pressingAttack){
-			self.shootBullet(self.mouseAngle);
+		if(this.pressingAttack){
+			this.shootBullet(this.mouseAngle);
 		}
 	}
-	self.shootBullet = function(angle){
+	Player.prototype.shootBullet = function(angle){
 		Bullet({
-            parent:self.id,
+            parent:this.id,
             angle:angle,
-            x:self.x,
-		    y:self.y,
-            map:self.map,
+            x:this.x,
+		    y:this.y,
+            map:this.map,
         });
 	}
 	
-	self.updateSpd = function(){
-		if(self.pressingRight)
-			self.spdX = self.maxSpd;
-		else if(self.pressingLeft)
-			self.spdX = -self.maxSpd;
+	Player.prototype.updateSpd = function(){
+		if(this.pressingRight)
+			this.spdX = this.maxSpd;
+		else if(this.pressingLeft)
+			this.spdX = -this.maxSpd;
 		else
-			self.spdX = 0;
+			this.spdX = 0;
 		
-		if(self.pressingUp)
-			self.spdY = -self.maxSpd;
-		else if(self.pressingDown)
-			self.spdY = self.maxSpd;
+		if(this.pressingUp)
+			this.spdY = -this.maxSpd;
+		else if(this.pressingDown)
+			this.spdY = this.maxSpd;
 		else
-			self.spdY = 0;		
+			this.spdY = 0;		
 	}
     
-    self.getInitPack = function(){
+    Player.prototype.getInitPack = function(){
         return {
-            id:self.id,
-		    x:self.x,
-		    y:self.y,	
-		    number:self.number,	 
-            hp:self.hp,
-            hpMax:self.hpMax,  
-            score:self.score, 
-            map:self.map,
+            id:this.id,
+		    x:this.x,
+		    y:this.y,	
+		    number:this.number,	 
+            hp:this.hp,
+            hpMax:this.hpMax,  
+            score:this.score, 
+            map:this.map,
         };
     }
 
-    self.getUpdatePack = function(){
+    Player.prototype.getUpdatePack = function(){
         return {
-            id:self.id,
-		    x:self.x,
-		    y:self.y,	
-            score:self.score,  
-            hp:self.hp,  
+            id:this.id,
+		    x:this.x,
+		    y:this.y,	
+            score:this.score,  
+            hp:this.hp,  
         };
     }
    
-	Player.list[self.id] = self;
+	this.list[Player.id] = this;
 	
-	initPack.player.push(self.getInitPack());
+	initPack.player.push(this.getInitPack());
     
-	return self;
-}
+	return {Player : Player};
+
+})(entityInterface, param, BulletComponent);

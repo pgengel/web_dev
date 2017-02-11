@@ -1,35 +1,38 @@
+var entityInterface = (function(){
 
+	var EntityInterface = function(param){
 
-var Entity = function(param){
-	var self = {
-		x:250,
-		y:250,
-		spdX:0,
-		spdY:0,
-		id:"",
-        map:'forest',
-	}
-    
-    if(param){
-        if(param.x)
-            self.x = param.x;    
-        if(param.y)
-            self.y = param.y;   
-        if(param.map)
-            self.map = param.map;   
-        if(param.id)
-            self.id = param.id;               
-    }
-    
-	self.update = function(){  
-		self.updatePosition();
-	}
-	self.updatePosition = function(){
-		self.x += self.spdX;
-		self.y += self.spdY;
-	}
-	self.getDistance = function(pt){
-		return Math.sqrt(Math.pow(self.x-pt.x,2) + Math.pow(self.y-pt.y,2));
-	}
-	return self;
-}
+			this.x = 250;
+			this.y = 250;
+			this.spdX = 0;
+			this.spdY =0;
+			this.id = "";
+			this.map ='forest';
+		
+		if(param){
+			if(param.x)
+				this.x = param.x;    
+			if(param.y)
+				this.y = param.y;   
+			if(param.map)
+				this.map = param.map;   
+			if(param.id)
+				this.id = param.id;               
+		}
+		
+		this.update = function(){  
+			this.updatePosition();
+		}
+		this.updatePosition = function(){
+			this.x += this.spdX;
+			this.y += this.spdY;
+		}
+		this.getDistance = function(pt){
+			return Math.sqrt(Math.pow(this.x-pt.x,2) + Math.pow(this.y-pt.y,2));
+		}
+
+	};
+
+	return {EntityInterface : EntityInterface};
+
+})();
