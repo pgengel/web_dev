@@ -1,4 +1,4 @@
-var Enityparams = (function(){
+var enityModel = (function(){
    
     var params = {
         x : 250,
@@ -10,4 +10,5 @@ var Enityparams = (function(){
     };
 
     return {params : params}
+
 })();
