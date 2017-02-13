@@ -1,22 +1,11 @@
-var PlayerComponent = (function(IEntity, param, CBullet){
+var PlayerComponent = (function(IEntity, playerMdl, bulletMdl, CBullet){
 	
-    var Player = IEntity.EntityInterface(param);
+    var Player = IEntity.EntityInterface(playerMdl.playerParams);
 	
-    Player.prototype.id = param.id;
-	Player.prototype.number = "" + Math.floor(10 * Math.random());
-	Player.prototype.pressingRight = false;
-	Player.prototype.pressingLeft = false;
-	Player.prototype.pressingUp = false;
-	Player.prototype.pressingDown = false;
-	Player.prototype.pressingAttack = false;
-	Player.prototype.mouseAngle = 0;
-	Player.prototype.maxSpd = 10;
-    Player.prototype.hp = 10;
-    Player.prototype.hpMax = 10;
-    Player.prototype.score = 0;
-	
+	//not sure what this is
 	var super_update = this.update;
 
+	
 	Player.prototype.update = function(){
 		this.updateSpd();
 		super_update();
@@ -24,55 +13,58 @@ var PlayerComponent = (function(IEntity, param, CBullet){
 		if(this.pressingAttack){
 			this.shootBullet(this.mouseAngle);
 		}
-	}
+	};
+	
+	//this need to change.
 	Player.prototype.shootBullet = function(angle){
 		Bullet({
-            parent:this.id,
-            angle:angle,
-            x:this.x,
-		    y:this.y,
-            map:this.map,
+            parent	: bulletMdl.playerParams.id,
+            angle	: bulletMdl.bulletParams.angle,
+            x		: bulletMdl.playerParams.x,
+		    y		: bulletMdl.playerParams.y,
+            map		: bulletMdl.playerParams.map,
         });
-	}
+	};
 	
 	Player.prototype.updateSpd = function(){
-		if(this.pressingRight)
-			this.spdX = this.maxSpd;
-		else if(this.pressingLeft)
-			this.spdX = -this.maxSpd;
+
+		if (playerMdl.playerParams.pressingRight)
+			playerMdl.playerParams.spdX = playerMdl.playerParams.maxSpd;
+		else if (playerMdl.playerParams.pressingLeft)
+			playerMdl.playerParams.spdX = -playerMdl.playerParams.maxSpd;
 		else
-			this.spdX = 0;
+			playerMdl.playerParams.spdX = 0;
 		
-		if(this.pressingUp)
-			this.spdY = -this.maxSpd;
-		else if(this.pressingDown)
-			this.spdY = this.maxSpd;
+		if (playerMdl.playerParams.pressingUp)
+			playerMdl.playerParams.spdY = -playerMdl.playerParams.maxSpd;
+		else if (playerMdl.playerParams.pressingDown)
+			playerMdl.playerParams.spdY = playerMdl.playerParams.maxSpd;
 		else
-			this.spdY = 0;		
-	}
+			playerMdl.playerParams.spdY = 0;		
+	};
     
     Player.prototype.getInitPack = function(){
         return {
-            id:this.id,
-		    x:this.x,
-		    y:this.y,	
-		    number:this.number,	 
-            hp:this.hp,
-            hpMax:this.hpMax,  
-            score:this.score, 
-            map:this.map,
+            id		: playerMdl.playerParams.id,
+		    x 		: playerMdl.playerParams.x,
+		    y 		: playerMdl.playerParams.y,	
+		    number 	: playerMdl.playerParams.number,	 
+            hp 		: playerMdl.playerParams.hp,
+            hpMax 	: playerMdl.playerParams.hpMax,  
+            score 	: playerMdl.playerParams.score, 
+            map 	: playerMdl.playerParams.map,
         };
-    }
+    };
 
     Player.prototype.getUpdatePack = function(){
         return {
-            id:this.id,
-		    x:this.x,
-		    y:this.y,	
-            score:this.score,  
-            hp:this.hp,  
+            id 	  : playerMdl.playerParams.id,
+		    x 	  : playerMdl.playerParams.x,
+		    y	  : playerMdl.playerParams.y,	
+            score : playerMdl.playerParams.score,  
+            hp 	  : playerMdl.playerParams.hp,  
         };
-    }
+    };
    
 	this.list[Player.id] = this;
 	
@@ -80,4 +72,4 @@ var PlayerComponent = (function(IEntity, param, CBullet){
     
 	return {Player : Player};
 
-})(entityInterface, param, BulletComponent);
+})(entityInterface, PlayerModel, BulletModel, BulletComponent);

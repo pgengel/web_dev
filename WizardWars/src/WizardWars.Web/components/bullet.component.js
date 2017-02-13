@@ -1,24 +1,18 @@
-var BulletComponent = (function(IEntity, param, CPlayer){
+var BulletComponent = (function(IEntity, BulletMdl, CPlayer){
 	
-    var Bullet = IEntity.EntityInterface(param);
-	
-    Bullet.prototype.id = Math.random();
-	Bullet.prototype.angle = param.angle;
-    Bullet.prototype.spdX = Math.cos(param.angle/180*Math.PI) * 10;
-	Bullet.prototype.spdY = Math.sin(param.angle/180*Math.PI) * 10;
-	Bullet.prototype.parent = param.parent;
-	Bullet.prototype.timer = 0;
-	Bullet.prototype.toRemove = false;
+    var Bullet = IEntity.EntityInterface(BulletMdl.bulletParams);
+
 	var super_update = this.update;
-	
+
     Bullet.prototype.update = function(){
-		if(this.timer++ > 100)
-			this.toRemove = true;
-		super_update();
+		if(BulletMdl.bulletParams.timer++ > 100)
+			BulletMdl.bulletParams.toRemove = true;
+		
+        super_update();
 		
 		for(var i in Player.list){
 			var p = Player.list[i];
-			if(this.map === p.map && this.getDistance(p) < 32 && this.parent !== p.id){
+			if(BulletMdl.bulletParams.map === p.map && this.getDistance(p) < 32 && BulletMdl.bulletParams.parent !== p.id){
 				//handle collision. ex: hp--;
                 p.hp -= 1;
                 
@@ -31,25 +25,26 @@ var BulletComponent = (function(IEntity, param, CPlayer){
                     p.y = Math.random() * 500;
 				   
                 }
-                this.toRemove = true;
+                
+                BulletMdl.bulletParams.toRemove = true;
 			}
 		}
 	}
     
     Bullet.prototype.getInitPack = function(){
         return {
-            id:this.id,
-            x:this.x,
-            y:this.y,
-            map:this.map,
+            id  : BulletMdl.bulletParams.id,
+            x   : BulletMdl.bulletParams.x,
+            y   : BulletMdl.bulletParams.y,
+            map : BulletMdl.bulletParams.map,
         };
     }
     
     Bullet.prototype.getUpdatePack = function(){
         return {
-            id:this.id,
-            x:this.x,
-            y:this.y,
+            id : BulletMdl.bulletParams.id,
+            x  : BulletMdl.bulletParams.x,
+            y  : BulletMdl.bulletParams.y,
         };
     }
     
@@ -58,4 +53,4 @@ var BulletComponent = (function(IEntity, param, CPlayer){
 	
     return {Bullet : Bullet};
 
-})(entityInterface, param, PlayerComponent);
+})(entityInterface, BulletModel, PlayerComponent);

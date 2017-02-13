@@ -1,23 +1,16 @@
-var entityInterface = (function(){
+var entityInterface = (function(entityMdl){
 
-	var EntityInterface = function(param){
-
-			this.x = 250;
-			this.y = 250;
-			this.spdX = 0;
-			this.spdY =0;
-			this.id = "";
-			this.map ='forest';
-		
-		if(param){
-			if(param.x)
-				this.x = param.x;    
-			if(param.y)
-				this.y = param.y;   
-			if(param.map)
-				this.map = param.map;   
-			if(param.id)
-				this.id = param.id;               
+	var EntityInterface = function(){
+	
+		if(entityMdl.params){
+			if(entityMdl.params.x)
+				this.x = entityMdl.params.x;    
+			if(entityMdl.params.y)
+				this.y = entityMdl.params.y;   
+			if(entityMdl.params.map)
+				this.map = entityMdl.params.map;   
+			if(entityMdl.params.id)
+				this.id = entityMdl.params.id;               
 		}
 		
 		this.update = function(){  
@@ -35,4 +28,4 @@ var entityInterface = (function(){
 
 	return {EntityInterface : EntityInterface};
 
-})();
+})(EntityModel);

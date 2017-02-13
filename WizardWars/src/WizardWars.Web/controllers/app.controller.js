@@ -1,7 +1,9 @@
 var appController = (function(){
 
         var setupEventListeners = function() {
-
+            
+            console.log('setupEventListerners');
+            
             document.onkeydown = function(event){
                 if(event.keyCode === 68)	//d
                     socket.emit('keyPress',{inputId:'right',state:true});
@@ -84,7 +86,10 @@ var appController = (function(){
         },1000/25);
 
 
-        var init = function() {};
+        var init = function() {
+            console.log('Apllication has started.');
+            setupEventListeners();    
+        };
 
         return {init : init}
 })();
