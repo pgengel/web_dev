@@ -18,9 +18,5 @@ io.sockets.on('connection', function(socket){
 
 console.log("Server started.");
 
-var WIDTH = 500;
-var HEIGHT = 500;
-var socket = io();
+appController.init();
 
-var initPack = {player:[],bullet:[]};
-var removePack = {player:[],bullet:[]};
