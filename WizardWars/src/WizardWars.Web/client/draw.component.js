@@ -68,13 +68,13 @@ var DrawComponent = (function() {
         Bullet.list[self.id] = self;		
         return self;
     }
-    
+
     Bullet.list = {};
     
     setInterval(function(){
         if(!selfId)
             return;
-        ctx.clearRect(0,0,500,500);
+        ctx.clearRect(0, 0, 500, 500);
         drawMap();
         drawScore();
         for(var i in Player.list)
@@ -85,8 +85,8 @@ var DrawComponent = (function() {
     
     var drawMap = function(){
         var player = Player.list[selfId];
-        var x = WIDTH/2 - player.x;
-        var y = HEIGHT/2 - player.y;
+        var x = WIDTH / 2 - player.x;
+        var y = HEIGHT / 2 - player.y;
         ctx.drawImage(Img.map[player.map],x,y);
     }
     

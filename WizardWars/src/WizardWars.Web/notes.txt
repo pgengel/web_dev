@@ -2,7 +2,8 @@
 npm init
 npm install express
 npm install socket.io
-node app.component.js
+node app.component.js ---server side.
+
 
 
 Other notes:
