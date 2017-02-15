@@ -21,18 +21,15 @@ var imageminPngquant = require('imagemin-pngquant');
 var imageminJpegRecompress = require('imagemin-jpeg-recompress');
 
 //file paths 
-var jsFiles = ['!./node_modules/**/*.js'
-                , '!./gulpfile.js'
-                , './models/budget.model.js'
-                , './shared/dom.strings.js'
-                , './shared/dom.strings.js'
-                , './interfaces/account.interface.js'
-                , './components/budget.component/expense.component.js'
-                , './components/budget.component/income.component.js'
-                , './components/budget.component/budget.component.js'
-                , './components/ui.component/ui.component.js'
-                , './controllers/app.controller.js'
-                , './app.component.js'];
+var jsFiles = ['./models/budget.model.js', 
+                './shared/dom.strings.js', 
+                './interfaces/account.interface.js', 
+                './components/budget.component/expense.component.js', 
+                './components/budget.component/income.component.js' , 
+                './components/budget.component/budget.component.js', 
+                './components/ui.component/ui.component.js', 
+                './controllers/app.controller.js', 
+                './app.component.js'];
 
 var cssFiles = ['styles/**/*.css', ];
 var destFolder = './dist';
@@ -72,8 +69,7 @@ gulp.task('build', function () {
     .pipe(concat('scripts.js')) //get all the files in put it in one file
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(destFolder))
-    .pipe(livereload()
-    );
+    .pipe(livereload());
 });
 
 gulp.task('images', function() {

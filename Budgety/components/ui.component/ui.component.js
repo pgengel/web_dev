@@ -11,14 +11,14 @@ var UIComponent = (function(DOMstr) {
         // fix the numbers to 2 dec.
         num = num.toFixed(2);
 
-        numSplit = num.split('.');
+        var numSplit = num.split('.');
 
-        int = numSplit[0];
+        var int = numSplit[0];
         if(int.length > 3){
             int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);
         }
 
-        dec = numSplit[1];
+        var dec = numSplit[1];
 
         return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
 
@@ -124,7 +124,7 @@ var UIComponent = (function(DOMstr) {
     var displayMonth = function() {
         var now, year, month;
         now = new Date(); //return todays date.
-        months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec']
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'];
         year = now.getFullYear();
         month = now.getMonth();
         $(DOMStrings.dateLabel).text(months[month] + ' ' + year);
