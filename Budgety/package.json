@@ -4,12 +4,37 @@
   "description": "Make a travel budget app\r \tadd friends like from wassup or numbers.\r \tadd items to then list and assign a person from the contact.\r \tSync the information between the users.\r \tadd a devide  by the number of ppl. has to do the calculation and pertange\r \ta person can accept the alication or reject with a note.\r \tstore profiles in a database.\r \tretrieve data from the database.\r \tReplace the document.queryselector with jquery",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Pieter",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "del": "^2.2.2",
+    "express": "^4.14.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-declare": "^0.3.0",
+    "gulp-handlebars": "^4.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp-watch": "^4.3.11",
+    "gulp-wrap": "^0.13.0",
+    "gulp-zip": "^4.0.0",
+    "handlebars": "^4.0.6",
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "imagemin-pngquant": "^5.0.0",
     "jasmine": "^2.5.3",
-    "jquery" : "^3.1.1"
+    "jquery": "^3.1.1"
+  },
+  "dependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
+    "static-server": "^2.0.4"
   }
 }
