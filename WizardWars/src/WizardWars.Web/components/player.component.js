@@ -1,75 +1,83 @@
-var PlayerComponent = (function(IEntity, playerMdl, bulletMdl, CBullet){
-	
-    var Player = IEntity.EntityInterface(playerMdl.playerParams);
-	
-	//not sure what this is
-	var super_update = this.update;
+var entity = require('./entity.component');
 
+module.exports = function(param){
+
+	var self = entity(param);
 	
-	Player.prototype.update = function(){
-		this.updateSpd();
+	self.id = param.id;
+	self.number = "" + Math.floor(10 * Math.random());
+	self.pressingRight = false;
+	self.pressingLeft = false;
+	self.pressingUp = false;
+	self.pressingDown = false;
+	self.pressingAttack = false;
+	self.mouseAngle = 0;
+	self.maxSpd = 10;
+    self.hp = 10;
+    self.hpMax = 10;
+    self.score = 0;
+	
+	var super_update = self.update;
+	self.update = function(){
+		self.updateSpd();
 		super_update();
 		
-		if(this.pressingAttack){
-			this.shootBullet(this.mouseAngle);
+		if(self.pressingAttack){
+			self.shootBullet(self.mouseAngle);
 		}
-	};
-	
-	//this need to change.
-	Player.prototype.shootBullet = function(angle){
+	}
+	self.shootBullet = function(angle){
 		Bullet({
-            parent	: bulletMdl.playerParams.id,
-            angle	: bulletMdl.bulletParams.angle,
-            x		: bulletMdl.playerParams.x,
-		    y		: bulletMdl.playerParams.y,
-            map		: bulletMdl.playerParams.map,
+            parent:self.id,
+            angle:angle,
+            x:self.x,
+		    y:self.y,
+            map:self.map,
         });
-	};
+	}
 	
-	Player.prototype.updateSpd = function(){
-
-		if (playerMdl.playerParams.pressingRight)
-			playerMdl.playerParams.spdX = playerMdl.playerParams.maxSpd;
-		else if (playerMdl.playerParams.pressingLeft)
-			playerMdl.playerParams.spdX = -playerMdl.playerParams.maxSpd;
+	self.updateSpd = function(){
+		if(self.pressingRight)
+			self.spdX = self.maxSpd;
+		else if(self.pressingLeft)
+			self.spdX = -self.maxSpd;
 		else
-			playerMdl.playerParams.spdX = 0;
+			self.spdX = 0;
 		
-		if (playerMdl.playerParams.pressingUp)
-			playerMdl.playerParams.spdY = -playerMdl.playerParams.maxSpd;
-		else if (playerMdl.playerParams.pressingDown)
-			playerMdl.playerParams.spdY = playerMdl.playerParams.maxSpd;
+		if(self.pressingUp)
+			self.spdY = -self.maxSpd;
+		else if(self.pressingDown)
+			self.spdY = self.maxSpd;
 		else
-			playerMdl.playerParams.spdY = 0;		
-	};
+			self.spdY = 0;		
+	}
     
-    Player.prototype.getInitPack = function(){
+    self.getInitPack = function(){
         return {
-            id		: playerMdl.playerParams.id,
-		    x 		: playerMdl.playerParams.x,
-		    y 		: playerMdl.playerParams.y,	
-		    number 	: playerMdl.playerParams.number,	 
-            hp 		: playerMdl.playerParams.hp,
-            hpMax 	: playerMdl.playerParams.hpMax,  
-            score 	: playerMdl.playerParams.score, 
-            map 	: playerMdl.playerParams.map,
+            id:self.id,
+		    x:self.x,
+		    y:self.y,	
+		    number:self.number,	 
+            hp:self.hp,
+            hpMax:self.hpMax,  
+            score:self.score, 
+            map:self.map,
         };
-    };
+    }
 
-    Player.prototype.getUpdatePack = function(){
+    self.getUpdatePack = function(){
         return {
-            id 	  : playerMdl.playerParams.id,
-		    x 	  : playerMdl.playerParams.x,
-		    y	  : playerMdl.playerParams.y,	
-            score : playerMdl.playerParams.score,  
-            hp 	  : playerMdl.playerParams.hp,  
+            id:self.id,
+		    x:self.x,
+		    y:self.y,	
+            score:self.score,  
+            hp:self.hp,  
         };
-    };
+    }
    
-	this.list[Player.id] = this;
+	//Player.list[self.id] = self;
 	
-	initPack.player.push(this.getInitPack());
+	//initPack.player.push(self.getInitPack());
     
-	return {Player : Player};
-
-})(entityInterface, PlayerModel, BulletModel, BulletComponent);
+	return self;
+}
