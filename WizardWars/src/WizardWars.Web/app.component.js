@@ -3,8 +3,9 @@
 var Server = require('./server.service');
 server = Server.start();
 
-// Import player object.
-var Player = require('./components/entity.player.component');
+// Import playerCom object.
+var PlayerCom = require('./components/entity.player.component');
+var PlayerConnServ = require('./player-onconnect.service')
 
 // Keep a list of all the sockets that are connected.
 var SOCKET_LIST = {};
@@ -20,8 +21,11 @@ io.sockets.on('connection', function(serverSocket){
     serverSocket.id = Math.random();
 	SOCKET_LIST[serverSocket.id] = serverSocket;
     
-    var player = Player(serverSocket.id);
+    var player = PlayerCom(serverSocket.id);
     PLAYER_LIST[serverSocket.id] = player;
+
+    var playerConnServ = PlayerConnServ(serverSocket, player);
+    playerConnServ.playerOnConnect()
 
     //Reset the player position
     player.number = "" + Math.floor(10 * Math.random());
@@ -31,26 +35,27 @@ io.sockets.on('connection', function(serverSocket){
         delete PLAYER_LIST[serverSocket.id];
     });
 
-    serverSocket.on('keyPress', function(data){
-        if(data.inputId === 'left'){
-            player.pressingLeft = data.state;
-        }   
-        else if(data.inputId === 'right'){
-            player.pressingRight = data.state;
-        }
-        else if(data.inputId === 'up'){
-            player.pressingUp = data.state;
-        }
-        else if(data.inputId === 'down'){
-            player.pressingDown = data.state;
-        }
-        else if(data.inputId === 'attack'){
-            player.pressingAttack = data.state;
-        }
-        else if(data.inputId === 'mouseAngle'){
-            player.mouseAngle = data.state;
-        }
-    });
+    // serverSocket.on('keyPress', function(data){
+    //     if(data.inputId === 'left'){
+    //         player.pressingLeft = data.state;
+    //     }   
+    //     else if(data.inputId === 'right'){
+    //         player.pressingRight = data.state;
+    //     }
+    //     else if(data.inputId === 'up'){
+    //         player.pressingUp = data.state;
+    //     }
+    //     else if(data.inputId === 'down'){
+    //         player.pressingDown = data.state;
+    //     }
+    //     else if(data.inputId === 'attack'){
+    //         player.pressingAttack = data.state;
+    //     }
+    //     else if(data.inputId === 'mouseAngle'){
+    //         player.mouseAngle = data.state;
+    //     }
+    // });
+
 });
 
 // Loop 40ms create a package and send back to the client.    

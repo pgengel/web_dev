@@ -15,22 +15,21 @@ module.exports = function (id){
         hp 			   : 10,
         hpMax 		   : 10,
         score          : 0,
+        updatePosition : function() {
+            if(self.pressingRight){
+                self.x += self.maxSpd;
+            }
+            if(self.pressingLeft){
+                self.x -= self.maxSpd;
+            }
+            if(self.pressingUp){
+                self.y -= self.maxSpd;
+            }
+            if(self.pressingDown){
+                self.y += self.maxSpd;
+            }
+        }
     };
-
-    self.updatePosition = function() {
-        if(self.pressingRight){
-            self.x += self.maxSpd;
-        }
-        if(self.pressingLeft){
-            self.x -= self.maxSpd;
-        }
-        if(self.pressingUp){
-            self.y -= self.maxSpd;
-        }
-        if(self.pressingDown){
-            self.y += self.maxSpd;
-        }
-    }
 
     return self;
     
