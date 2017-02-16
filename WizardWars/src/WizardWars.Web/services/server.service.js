@@ -1,26 +1,21 @@
+module.exports = {
 
-    // Server setup
-    var express = require('express');
-    var app = express();
+	start : function() {
+		var express = require('express');
+		var app = express();
 
-    // Create a server
-    var server = require('http').Server(app);
+		//create a server
+		var server = require('http').Server(app);
 
-    app.get('/',function(req, res) {
-        res.sendFile(__dirname + '/index.html');
-    });
+		app.get('/',function(req, res) {
+			res.sendFile(__dirname + '/client/index.html');
+		});
+		app.use('/client', express.static(__dirname + '/client'));
 
-    app.use('/',express.static(__dirname));
+		server.listen(3000);
+		console.log('server started on 3000.');
 
-    server.listen(3000);
-
-    // Setup sockets.
-    var io = require('socket.io')(server, {});
-    io.sockets.on('connection', function(socket){ 
-        console.log('socket data'); 
-    });
-
-    console.log("Server started."); 
-
-
+		return server;
+	}
+};
 

@@ -1,3 +1,5 @@
+var EntityModel = require('./entity.model')
+
 var PlayerModel = (function(entityMdl) {
 
     var playerParams = {

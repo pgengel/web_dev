@@ -1,68 +1,14 @@
-// Server side - This file get served from express.
-// TODO: appServerSetup.init() 
-// Setup Express server.
-var express = require('express');
-var app = express();
+//Server-side imports
+//Server
+var Server = require('./services/server.service');
+server = Server.start();
 
-//create a server
-var server = require('http').Server(app);
-
-app.get('/',function(req, res) {
-	res.sendFile(__dirname + '/client/index.html');
-});
-app.use('/client', express.static(__dirname + '/client'));
-
-server.listen(3000);
-console.log('server started on 3000.');
+// Import player object.
+var Player = require('./components/entity.component');
 
 // Keep a list of all the sockets that are connected.
 var SOCKET_LIST = {};
 var PLAYER_LIST = {};
-
-var Player = function(id) {
-    self = {
-        x : 250,
-        y : 250,
-        id : id,
-        number : "" + Math.floor(10 * Math.random()),
-        pressingRight  : false,
-		pressingLeft   : false,
-		pressingUp     : false,
-		pressingDown   : false,
-		pressingAttack : false,
-		mouseAngle 	   : 0,
-		maxSpd 		   : 10,
-		hp 			   : 10,
-		hpMax 		   : 10,
-    	score          : 0,
-    }
-
-    self.updatePosition = function() {
-        if(self.pressingRight){
-            self.x += self.maxSpd;
-            //console.log(self.pressingRight);
-            //console.log(self.x);
-        }
-        if(self.pressingLeft){
-            self.x -= self.maxSpd;
-            //console.log(self.pressingLeft);
-            //console.log(self.x);
-        }
-        if(self.pressingUp){
-            self.y -= self.maxSpd;
-            //console.log(self.pressingUp);
-            //console.log(self.x);
-        }
-        if(self.pressingDown){
-            self.y += self.maxSpd;
-            //console.log(self.pressingDown);
-            //console.log(self.x);
-        }
-  
-    }
-
-    return self;
-};
 
 // Setup Socket IO
 var io = require('socket.io')(server, {});
@@ -77,8 +23,8 @@ io.sockets.on('connection', function(serverSocket){
     PLAYER_LIST[serverSocket.id] = player;
 
     //Reset the player position
-    // player.x = 0;
-    // player.y = 0;
+    player.x = 0;
+    player.y = 0;
     player.number = "" + Math.floor(10 * Math.random());
 
     serverSocket.on('disconnect', function() {

@@ -14,3 +14,5 @@ var EntityModel = (function(){
     return {params : params}
 
 })();
+
+module.exports = EntityModel;

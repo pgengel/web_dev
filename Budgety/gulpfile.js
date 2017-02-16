@@ -101,6 +101,7 @@ gulp.task('watch', function () {
     livereload.listen(); //start the server
     gulp.watch(jsFiles, ['build']); // call the build task.
     gulp.watch(cssFiles, ['styles']); // call the styles task when there is a change in cssFile path.
+    gulp.watch(imageFiles, ['images']);
 });
 
 gulp.task('clean', function() {
@@ -115,7 +116,7 @@ gulp.task('export', function() {
             .pipe(gulp.dest('./'))   
 });
 
-gulp.task('default', ['clean', 'images', 'styles', 'build'], function() {
+gulp.task('default', ['clean', 'images', 'styles', 'build', 'export'], function() {
     
 });
 
