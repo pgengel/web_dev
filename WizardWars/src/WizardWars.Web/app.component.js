@@ -5,7 +5,8 @@ server = Server.start();
 
 // Import playerCom object.
 var PlayerCom = require('./components/entity.player.component');
-var PlayerConnServ = require('./player-onconnect.service')
+var PlayerConnServ = require('./services/player-onconnect.service');
+var PlayerUpdatePosition = require('./player-update-postition');
 
 // Keep a list of all the sockets that are connected.
 var SOCKET_LIST = {};
@@ -22,67 +23,25 @@ io.sockets.on('connection', function(serverSocket){
 	SOCKET_LIST[serverSocket.id] = serverSocket;
     
     var player = PlayerCom(serverSocket.id);
+    //player.number = "" + Math.floor(10 * Math.random());
     PLAYER_LIST[serverSocket.id] = player;
 
     var playerConnServ = PlayerConnServ(serverSocket, player);
     playerConnServ.playerOnConnect()
-
-    //Reset the player position
-    player.number = "" + Math.floor(10 * Math.random());
 
     serverSocket.on('disconnect', function() {
         delete SOCKET_LIST[serverSocket.id];
         delete PLAYER_LIST[serverSocket.id];
     });
 
-    // serverSocket.on('keyPress', function(data){
-    //     if(data.inputId === 'left'){
-    //         player.pressingLeft = data.state;
-    //     }   
-    //     else if(data.inputId === 'right'){
-    //         player.pressingRight = data.state;
-    //     }
-    //     else if(data.inputId === 'up'){
-    //         player.pressingUp = data.state;
-    //     }
-    //     else if(data.inputId === 'down'){
-    //         player.pressingDown = data.state;
-    //     }
-    //     else if(data.inputId === 'attack'){
-    //         player.pressingAttack = data.state;
-    //     }
-    //     else if(data.inputId === 'mouseAngle'){
-    //         player.mouseAngle = data.state;
-    //     }
-    // });
-
 });
 
 // Loop 40ms create a package and send back to the client.    
 setInterval(function(){
-    var pack = [];
-//     var pack = {
-//         player:Player.update(),
-//         bullet:Bullet.update(),
-//     }
-    //create a package and send back to the client.
-    for(var i in PLAYER_LIST){
-        var player = PLAYER_LIST[i];
-        player.updatePosition();
-        pack.push({
-            x: player.x,
-            y: player.y,
-            number : player.number
-        });
-
-        // clientSocket.emit('init', initPack);
-        // clientSocket.emit('update', pack);
-        // clientSocket.emit('remove', removePack);
-    }
 
     for(var i in SOCKET_LIST){
         var socket = SOCKET_LIST[i];
-        socket.emit('newPosition', pack);
+        socket.emit('newPosition', PlayerUpdatePosition.playerUpdatePosition(PLAYER_LIST));
     }
 //     initPack.player = [];
 //     initPack.bullet = [];

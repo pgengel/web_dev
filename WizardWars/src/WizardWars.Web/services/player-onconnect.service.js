@@ -1,6 +1,3 @@
-// var serverSocket = require('./server.service');
-// var PlayerCom = require('./components/entity.player.component');
-
 module.exports = function(serverSocket, PlayerCom) {
     var self = {
         playerOnConnect : function(){

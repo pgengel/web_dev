@@ -1,10 +1,10 @@
 module.exports = function (id){
     
     var self = {
-        x : 250,
-        y : 250,
-        id : id,
-        number : "" + Math.floor(10 * Math.random()),
+        x              : 250,
+        y              : 250,
+        id             : id,
+        number         : "" + Math.floor(10 * Math.random()),
         pressingRight  : false,
         pressingLeft   : false,
         pressingUp     : false,
@@ -28,7 +28,25 @@ module.exports = function (id){
             if(self.pressingDown){
                 self.y += self.maxSpd;
             }
-        }
+        },
+        getDistance : function(pt){
+		    return Math.sqrt(Math.pow(self.x-pt.x,2) + Math.pow(self.y-pt.y,2));
+	    },
+        getInitPack : function(){
+            return {
+                id:self.id,
+                x:self.x,
+                y:self.y,
+                map:self.map,
+            }
+        },
+        getUpdatePack : function(){
+            return {
+                id:self.id,
+                x:self.x,
+                y:self.y,
+            };
+        }  
     };
 
     return self;
