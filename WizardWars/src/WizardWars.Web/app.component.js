@@ -31,6 +31,11 @@ io.sockets.on('connection', function(serverSocket){
     var playerConnServ = PlayerConnServ(serverSocket, player);
     playerConnServ.playerOnConnect()
 
+
+    var bullet = BulletCom(0);
+    BULLET_LIST[serverSocket.id] = bullet;
+
+
     serverSocket.on('disconnect', function() {
         delete SOCKET_LIST[serverSocket.id];
         delete PLAYER_LIST[serverSocket.id];
@@ -42,7 +47,7 @@ io.sockets.on('connection', function(serverSocket){
 setInterval(function(){
     var pack = {
         player: PlayerUpdate.updatePosition(PLAYER_LIST),
-        bullet: BulletUpdate.updatePosition(PLAYER_LIST)    
+        bullet: BulletUpdate.updatePosition(BULLET_LIST)    
     };
 
     for(var i in SOCKET_LIST){
