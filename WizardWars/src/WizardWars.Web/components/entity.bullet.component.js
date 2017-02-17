@@ -1,32 +1,24 @@
-module.exports = function(param){
+module.exports = function(angle){
     var self = {
         x              : 250,
         y              : 250,
         id             : Math.random(),
-        number         : "" + Math.floor(10 * Math.random()), 
         maxSpd 		   : 10,
-        hp 			   : 10,
-        hpMax 		   : 10,
-        score          : 0,
-        angle          : param.angle,
-        spdX           : Math.cos(param.angle/180*Math.PI) * 10,
-        spdY           : Math.sin(param.angle/180*Math.PI) * 10,
-        parent         : param.parent,
+        angle          : angle,
+        spdX           : Math.cos(pangle/180*Math.PI) * 10,
+        spdY           : Math.sin(angle/180*Math.PI) * 10,
+        parent         : parent,
         timer          : 0,
         toRemove       : false,
         updatePosition : function() {
-            if(self.pressingRight){
-                self.x += self.maxSpd;
+            if(self.timer++ > 100){ //after 100  frames the bullet will disapear TODO: collision needs to be done here.
+                self.toRemove = true;
             }
-            if(self.pressingLeft){
-                self.x -= self.maxSpd;
-            }
-            if(self.pressingUp){
-                self.y -= self.maxSpd;
-            }
-            if(self.pressingDown){
-                self.y += self.maxSpd;
-            }
+
+            //super update
+            self.x += self.spdX;
+            self.y += self.spdY;
+
         },
         getDistance   : function(pt){
 		    return Math.sqrt(Math.pow(self.x-pt.x,2) + Math.pow(self.y-pt.y,2));

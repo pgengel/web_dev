@@ -1,6 +1,6 @@
 module.exports = {
     
-    playerUpdatePosition : function(PLAYER_LIST) {
+    updatePosition : function(PLAYER_LIST) {
             var pack = [];
                 //create a package and send back to the client.
             for(var i in PLAYER_LIST){

@@ -6,11 +6,15 @@ server = Server.start();
 // Import playerCom object.
 var PlayerCom = require('./components/entity.player.component');
 var PlayerConnServ = require('./services/player-onconnect.service');
-var PlayerUpdatePosition = require('./player-update-postition');
+var PlayerUpdate = require('./player-update.service');
+
+var BulletCom = require('./components/entity.bullet.component');
+var BulletUpdate = require('./bullet-update.service');
 
 // Keep a list of all the sockets that are connected.
 var SOCKET_LIST = {};
 var PLAYER_LIST = {};
+var BULLET_LIST = {};
 
 // Setup Socket IO
 var io = require('socket.io')(server, {});
@@ -21,11 +25,9 @@ io.sockets.on('connection', function(serverSocket){
     // ID to the socket, and add to the list.
     serverSocket.id = Math.random();
 	SOCKET_LIST[serverSocket.id] = serverSocket;
-    
-    var player = PlayerCom(serverSocket.id);
-    //player.number = "" + Math.floor(10 * Math.random());
-    PLAYER_LIST[serverSocket.id] = player;
 
+    var player = PlayerCom(serverSocket.id);
+    PLAYER_LIST[serverSocket.id] = player;
     var playerConnServ = PlayerConnServ(serverSocket, player);
     playerConnServ.playerOnConnect()
 
@@ -38,10 +40,15 @@ io.sockets.on('connection', function(serverSocket){
 
 // Loop 40ms create a package and send back to the client.    
 setInterval(function(){
+    var pack = {
+        player: PlayerUpdate.updatePosition(PLAYER_LIST),
+        bullet: BulletUpdate.updatePosition(PLAYER_LIST)    
+    };
 
     for(var i in SOCKET_LIST){
         var socket = SOCKET_LIST[i];
-        socket.emit('newPosition', PlayerUpdatePosition.playerUpdatePosition(PLAYER_LIST));
+        socket.emit('newPosition', pack);
+        //socket.emit('newPosition', BulletUpdate.updatePosition(BULLET_LIST));
     }
 //     initPack.player = [];
 //     initPack.bullet = [];

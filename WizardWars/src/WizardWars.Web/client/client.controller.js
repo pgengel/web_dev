@@ -50,15 +50,21 @@ var clientController = (function(){
             };  
         };
 
-        var playerMove = function() {
+        var drawNewPosition = function() {
             var ctx = document.getElementById('ctx').getContext("2d");
             ctx.font = '30px Arial';
 
             clientSocket.on('newPosition', function(data) {
-                console.log('newPosition');
+
                 ctx.clearRect(0, 0, 500, 500);
-                for(var i = 0; i< data.length; i++){
-                    ctx.fillText(data[i].number, data[i].x, data[i].y);
+                //draw the player
+                for(var i = 0; i< data.player.length; i++){
+                    ctx.fillText(data.player[i].number, data.player[i].x, data.player[i].y);
+                }
+
+                //draw the bullets
+                for(var i = 0; i< data.bullet.length; i++){
+                    ctx.fillRect(data.bullet[i].x-5, data.bullet[i].y-5, 10, 10);
                 }
                
             });
@@ -81,7 +87,7 @@ var clientController = (function(){
             // Init the event listerners.
             setupEventListeners();  
 
-            playerMove();
+            drawNewPosition();
   
         };
 
