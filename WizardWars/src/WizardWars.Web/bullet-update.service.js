@@ -7,7 +7,7 @@ module.exports = {
             for(var i in BULLET_LIST){
                 var bullet = BULLET_LIST[i];
                 bullet.angle = Math.random();
-                console.log(bullet);
+                //console.log(bullet);
                 bullet.updatePosition();
                 pack.push({
                     x: bullet.x,

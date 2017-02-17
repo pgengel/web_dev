@@ -11,3 +11,5 @@ File coms - express
 Package coms - socket.
 In the web browser:
     localhost:3000
+
+Look at bullet-update.service and entity.bullet.component

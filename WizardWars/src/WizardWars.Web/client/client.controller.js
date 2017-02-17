@@ -1,11 +1,26 @@
 // Client side - This will send data from the client to the server
-var clientController = (function(){
+var clientController = (function(chatCom){
 
         // import the socket emit and on listners.
         var clientSocket = io();
 
-        var setupEventListeners = function() {
-                
+        var chatText = document.getElementById('chat-text');
+        var chatInput = document.getElementById('chat-input');
+        var chatForm = document.getElementById('chat-form');
+
+        var setupEventListeners = function() {  
+            
+            //the key press happens on the global event not just on the click.
+            document.addEventListener('keypress', function(event) {   
+                if(event.keyCode === 13 || event.which === 13){
+                    //console.log(document.getElementById('chat-input').value);
+                    event.preventDefault();
+                    
+                    clientSocket.emit('sendMessageToServer', document.getElementById('chat-input').value);
+                    document.getElementById('chat-input').value = '';         
+                }
+            });
+
             // The client presses a key
             document.onkeydown = function(event){
                 if(event.keyCode === 68)
@@ -68,6 +83,12 @@ var clientController = (function(){
                 }
                
             });
+
+            clientSocket.on('addToChat',function(data){
+                console.log('addToChat: '+ data);
+                document.getElementById('chat-text').innerHTML += '<div>' + data + '</div>';
+            });
+
         };
 
         var init = function() {
@@ -86,10 +107,12 @@ var clientController = (function(){
                         
             // Init the event listerners.
             setupEventListeners();  
-
+            
+     
+            
             drawNewPosition();
   
         };
 
         return {init : init}
-})();
+})(ChatComponent);

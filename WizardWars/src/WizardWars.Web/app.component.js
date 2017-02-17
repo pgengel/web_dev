@@ -32,9 +32,15 @@ io.sockets.on('connection', function(serverSocket){
     playerConnServ.playerOnConnect()
 
 
-    var bullet = BulletCom(0);
+    var bullet = BulletCom(Math.random());
     BULLET_LIST[serverSocket.id] = bullet;
 
+    serverSocket.on('sendMessageToServer', function(data) {
+        var playerName  = ("" + serverSocket.id).slice(2, 7);
+        for(var i in SOCKET_LIST){
+            SOCKET_LIST[i].emit('addToChat', playerName + ': ' + data);        
+        }
+    });
 
     serverSocket.on('disconnect', function() {
         delete SOCKET_LIST[serverSocket.id];
