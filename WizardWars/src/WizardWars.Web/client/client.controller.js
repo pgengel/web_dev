@@ -4,10 +4,6 @@ var clientController = (function(chatCom){
         // import the socket emit and on listners.
         var clientSocket = io();
 
-        var chatText = document.getElementById('chat-text');
-        var chatInput = document.getElementById('chat-input');
-        var chatForm = document.getElementById('chat-form');
-
         var setupEventListeners = function() {  
             
             //the key press happens on the global event not just on the click.
@@ -80,15 +76,14 @@ var clientController = (function(chatCom){
                 //draw the bullets
                 for(var i = 0; i< data.bullet.length; i++){
                     ctx.fillRect(data.bullet[i].x-5, data.bullet[i].y-5, 10, 10);
-                }
-               
+                }     
             });
+        };
 
+        var updateChat = function() {
             clientSocket.on('addToChat',function(data){
-                console.log('addToChat: '+ data);
                 document.getElementById('chat-text').innerHTML += '<div>' + data + '</div>';
             });
-
         };
 
         var init = function() {
@@ -108,9 +103,9 @@ var clientController = (function(chatCom){
             // Init the event listerners.
             setupEventListeners();  
             
-     
-            
             drawNewPosition();
+            
+            updateChat();
   
         };
 

@@ -8,8 +8,8 @@ var PlayerCom = require('./components/entity.player.component');
 var PlayerConnServ = require('./services/player-onconnect.service');
 var PlayerUpdate = require('./player-update.service');
 
-var BulletCom = require('./components/entity.bullet.component');
-var BulletUpdate = require('./bullet-update.service');
+ var BulletCom = require('./components/entity.bullet.component');
+ var BulletUpdate = require('./bullet-update.service');
 
 // Keep a list of all the sockets that are connected.
 var SOCKET_LIST = {};
@@ -26,14 +26,16 @@ io.sockets.on('connection', function(serverSocket){
     serverSocket.id = Math.random();
 	SOCKET_LIST[serverSocket.id] = serverSocket;
 
-    var player = PlayerCom(serverSocket.id);
+    var bullet = BulletCom();
+    BULLET_LIST[serverSocket.id] = bullet;
+
+    var player = PlayerCom(serverSocket.id, BulletCom);
     PLAYER_LIST[serverSocket.id] = player;
     var playerConnServ = PlayerConnServ(serverSocket, player);
     playerConnServ.playerOnConnect()
 
 
-    var bullet = BulletCom(Math.random());
-    BULLET_LIST[serverSocket.id] = bullet;
+
 
     serverSocket.on('sendMessageToServer', function(data) {
         var playerName  = ("" + serverSocket.id).slice(2, 7);
@@ -59,7 +61,7 @@ setInterval(function(){
     for(var i in SOCKET_LIST){
         var socket = SOCKET_LIST[i];
         socket.emit('newPosition', pack);
-        //socket.emit('newPosition', BulletUpdate.updatePosition(BULLET_LIST));
+        //socket.emit('newPosition', pack);
     }
 //     initPack.player = [];
 //     initPack.bullet = [];

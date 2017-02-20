@@ -1,4 +1,7 @@
-module.exports = function (id){
+var BulletCom = require('./entity.bullet.component');
+var BulletUpdate = require('../bullet-update.service');
+
+module.exports = function (id, BulletCom){
     
     var self = {
         x              : 250,
@@ -28,7 +31,19 @@ module.exports = function (id){
             if(self.pressingDown){
                 self.y += self.maxSpd;
             }
+            if(self.pressingAttack){
+                self.shootBullet(self.mouseAngle); 
+            }
+            
+
         },
+        
+        shootBullet : function(angle) {
+            var bulletCom = BulletCom();
+            bulletCom.x = self.x;
+            bulletCom.y = self.y;
+        },
+
         getDistance : function(pt){
 		    return Math.sqrt(Math.pow(self.x-pt.x,2) + Math.pow(self.y-pt.y,2));
 	    },

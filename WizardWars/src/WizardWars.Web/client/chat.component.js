@@ -26,7 +26,7 @@ var ChatComponent = (function() {
             if(chatInput.value[0] === '/')
                 socket.emit('evalServer', chatInput.value.slice(1));
             else
-                socket.emit('sendMsgToServer', chatInput.value);
+                socket.emit('sendMessageToServer', chatInput.value);
             chatInput.value = '';		
         } 
     };

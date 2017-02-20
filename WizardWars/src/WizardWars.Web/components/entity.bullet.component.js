@@ -14,12 +14,13 @@ module.exports = function(angle){
             if(self.timer++ > 100){ //after 100  frames the bullet will disapear TODO: collision needs to be done here.
                 self.toRemove = true;
             }
-            self.angle = Math.random();
+            //self.angle = Math.random();
             self.spdX = Math.cos(self.angle/180 * Math.PI) * 10;
-            self.spdY = Math.sin(self.angle/180 * Math.PI) * 12.25;
+            self.spdY = Math.sin(self.angle/180 * Math.PI) * 10;
             //super update
             self.x += self.spdX;
             self.y += self.spdY;
+            console.log(self);
 
         },
         getDistance   : function(pt){
