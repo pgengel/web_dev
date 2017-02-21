@@ -2,3 +2,4 @@
 node_modules
 /WizardWars/src/WizardWars.Web/*.log
 dist
+/BudgetyEnterprise/src/Budgety.WebApi/src/app/pipes/*.pdf
