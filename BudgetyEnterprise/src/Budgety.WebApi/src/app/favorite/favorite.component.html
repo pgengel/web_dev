@@ -1,0 +1,17 @@
+<!--class binding: adding or removing classes-->
+<!--<i 
+    class="glyphicon" (click) = "onClick()" 
+    [class.glyphicon-star-empty] = "!isFavorite"
+    [class.glyphicon-star] = 'isFavorite'
+>
+</i>-->
+<!--ngClass-->
+<i 
+    class="glyphicon" 
+    (click) = "onClick()" 
+    [ngClass]="{
+        'glyphicon-star' : isFavorite,
+        'glyphicon-star-empty' : !isFavorite
+    }"
+>
+</i>

@@ -1,0 +1,27 @@
+<h2>Courses</h2>
+{{ title }}
+<!--Property binding-->
+<!--<h1 [textContent] = "title">  </h1> From Component to DOM-->
+<!--<h1 [DOM attr] = "Component var">  </h1>-->
+<!--<input type="text" autoGrow></input>-->
+
+<div *ngIf="courses.length > 0">
+    <ul>
+        <li *ngFor="let course of courses">{{ course }}</li> 
+        <!--ngFor as a struct directive-->
+    </ul>
+</div>
+<div [hidden] = "courses.length == 0">
+    You do not have any courses.
+</div>
+
+
+<!--Class binding https://www.w3schools.com/jsref/dom_obj_all.asp-->
+<button class="btn btn-primary" [class.active] = "isActive">Property</button>
+<!--style binding-->
+<button class="btn btn-primary" [style.backgroundColor] = "isActive ? 'blue' : 'grey'">Style</button>
+<!--event binding-->
+<button class="btn btn-primary" (click) = "onClick($event)">Event</button>
+<!--2-way binding-->
+<input type="text" [value]="title" (input) = "title = $event.target.value">
+<!--<input type="text" [(ngModel)]="title"/>-->
