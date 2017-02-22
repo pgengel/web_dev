@@ -1,7 +1,8 @@
-import { NgbModule }     from '@ng-bootstrap/ng-bootstrap';
-import { NgModule }      from '@angular/core';
-import { FormsModule }   from '@angular/forms'; 
-import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule }            from '@ng-bootstrap/ng-bootstrap';
+import { NgModule }             from '@angular/core';
+import { FormsModule }          from '@angular/forms'; 
+import { BrowserModule }        from '@angular/platform-browser';
+import { AppRoutingModule }     from './app-routing.module';
 
 //for the autocomplete component.
 //import { Observable }    from 'rxjs/Rx';
@@ -18,6 +19,11 @@ import { ContactFormComponent }   from './basic-form/contact-form.component'
 //import { AutoCompleteComponent }  from './auto-complete/auto-complete.component'
 import { HttpModule }             from '@angular/http';
 import { JsonpModule }            from '@angular/http';
+//routing
+import { HomeComponent }        from './home.component';
+import { PhotosComponent }      from './photos/photos.component';
+import { MessageComponent }     from './message/message.component';
+import { NotFoundComponent }    from './not-found.component';
 
 //import files - service
 import { CoursesService }       from './courses/courses.service';
@@ -30,7 +36,8 @@ import { LoaderComponent }      from './loader/loader.component';
     BrowserModule, 
     FormsModule, 
     HttpModule, 
-    JsonpModule
+    JsonpModule,
+    AppRoutingModule,      // routing
  ],
 
   declarations: [ // 1.1 import components
@@ -44,6 +51,10 @@ import { LoaderComponent }      from './loader/loader.component';
     ContactFormComponent,
     LoaderComponent,
     //AutoCompleteComponent
+    HomeComponent,
+    PhotosComponent,
+    MessageComponent,
+    NotFoundComponent,
   ], 
 
   providers   : [

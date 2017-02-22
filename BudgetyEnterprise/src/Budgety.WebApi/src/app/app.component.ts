@@ -19,7 +19,12 @@ import { Component } from '@angular/core';
              </panel>
              <zippy title="Expand me">This is content</zippy>
              <loader></loader>
-             
+             <ul>
+              <li><a routerLink="">Home</a><li>
+              <li><a routerLink="messages">Messages</a><li>
+              <li><a routerLink="photos">Photos</a><li>
+             </ul>
+             <router-outlet></router-outlet>
              `,
 })
 export class AppComponent  { 

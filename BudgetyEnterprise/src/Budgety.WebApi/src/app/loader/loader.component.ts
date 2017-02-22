@@ -1,11 +1,11 @@
 import { Component, OnInit }    from '@angular/core';
-import {Response} from '@angular/http';
-import { LoaderPostService }  from './loader-post.service'
+import { Response }             from '@angular/http';
+import { LoaderPostService }    from './loader-post.service'
 
 @Component({
-    moduleId: module.id,
-    selector: 'loader',
-    templateUrl: './loader.component.html'
+    moduleId    : module.id,
+    selector    : 'loader',
+    templateUrl : './loader.component.html'
 })
 export class LoaderComponent implements OnInit{
     
