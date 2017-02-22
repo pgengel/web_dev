@@ -3,7 +3,10 @@ import { Router }    from '@angular/router'; // for navigating to a page.
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello {{name}} </h1> 
+  template: `<navbar></navbar>
+             <router-outlet></router-outlet>
+             
+             <h1>Hello {{name}} </h1> 
              <courses></courses> 
              <like></like>
              <favorite [is-favorite] = "post.isFavorite" (favoriteChange)="onFavoriteChange($event)">
@@ -27,7 +30,7 @@ import { Router }    from '@angular/router'; // for navigating to a page.
               <li><a [routerLink]="['photos', '1']">Photos</a><li>
              </ul>
              <button (click)="onClick()">Click Me</button>
-             <router-outlet></router-outlet>
+
              `,
 })
 export class AppComponent  { 

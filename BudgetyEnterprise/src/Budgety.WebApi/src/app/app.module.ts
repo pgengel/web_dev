@@ -12,21 +12,24 @@ import { PhotosRoutingModule }  from './photos/photos.routing';
 import { AppComponent }           from './app.component';
 import { CoursesComponent }       from './courses/courses.component';
 import { FavoriteComponent }      from './favorite/favorite.component';
-import { LikeComponent }          from './like/like.component'
-import { VoterComponent }         from './voter/voter.component'
-import { PanelComponent }         from './panel/panel.component'
-import { ZippyComponent }         from './zippy/zippy.component'
-import { ContactFormComponent }   from './basic-form/contact-form.component'
+import { LikeComponent }          from './like/like.component';
+import { VoterComponent }         from './voter/voter.component';
+import { PanelComponent }         from './panel/panel.component';
+import { ZippyComponent }         from './zippy/zippy.component';
+import { ContactFormComponent }   from './basic-form/contact-form.component';
+import { NavBarComponent }        from './navbar/navbar.component';
 //import { AutoCompleteComponent }  from './auto-complete/auto-complete.component'
 import { HttpModule }             from '@angular/http';
 import { JsonpModule }            from '@angular/http';
 
 //routing
-import { HomeComponent }          from './home.component';
+import { HomeComponent }          from './home/home.component';
 import { MessageComponent }       from './message/message.component';
-import { NotFoundComponent }      from './not-found.component';
+import { NotFoundComponent }      from './not-found/not-found.component';
 import { PhotosDetailsComponent}  from './photos/photos-details.component';
 import { PhotosComponent }        from './photos/photos.component'
+import { UsersComponent }         from './users/users.component';
+import { PostsComponent }         from './posts/posts.component';
 
 //import files - service
 import { CoursesService }       from './courses/courses.service';
@@ -55,8 +58,12 @@ import { LoaderComponent }      from './loader/loader.component';
     ZippyComponent,
     ContactFormComponent,
     LoaderComponent,
+    NavBarComponent,
     //AutoCompleteComponent
+    
     //routing
+    UsersComponent,
+    PostsComponent,
     PhotosComponent,
     PhotosDetailsComponent,
     HomeComponent,
