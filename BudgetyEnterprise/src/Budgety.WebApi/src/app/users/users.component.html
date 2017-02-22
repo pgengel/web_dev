@@ -1,4 +1,28 @@
 <h2>Users</h2>
+
 <div *ngIf="isLoading">
     <i class="fa fa-spinner fa-spin"></i>
 </div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <i class="glyphicon glyphicon-edit"></i>
+            </td>
+            <td>
+                <i class="glyphicon glyphicon-remove"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
