@@ -5,7 +5,7 @@ import { Router }    from '@angular/router'; // for navigating to a page.
   selector: 'my-app',
   template: `             
              <navbar></navbar>
-             <loader></loader>
+             
              <router-outlet></router-outlet>
 
              <h1>Hello {{name}} </h1> 
@@ -32,7 +32,7 @@ import { Router }    from '@angular/router'; // for navigating to a page.
               <li><a [routerLink]="['photos', '1']">Photos</a><li>
              </ul>
              <button (click)="onClick()">Click Me</button>
-
+             <loader></loader>
              `,
 })
 export class AppComponent  { 

@@ -35,6 +35,7 @@ import { PostsComponent }         from './posts/posts.component';
 import { CoursesService }       from './courses/courses.service';
 import { LoaderPostService }    from './loader/loader-post.service';
 import { LoaderComponent }      from './loader/loader.component';
+import { UsersService }         from './users/users.service';
 
 @NgModule({
   imports: [ 
@@ -74,6 +75,7 @@ import { LoaderComponent }      from './loader/loader.component';
   providers   : [
     CoursesService,
     LoaderPostService,
+    UsersService
   ],
 
   bootstrap   : [ AppComponent ]
