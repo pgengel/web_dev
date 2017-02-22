@@ -21,8 +21,8 @@ import { JsonpModule }            from '@angular/http';
 
 //import files - service
 import { CoursesService }       from './courses/courses.service';
-import { TypicodePostService }  from './typicode/typicode-post.service';
-import { TypicodeComponent }    from './typicode/typicode.component';
+import { LoaderPostService }    from './loader/loader-post.service';
+import { LoaderComponent }      from './loader/loader.component';
 
 @NgModule({
   imports: [ 
@@ -42,13 +42,13 @@ import { TypicodeComponent }    from './typicode/typicode.component';
     PanelComponent,
     ZippyComponent,
     ContactFormComponent,
-    TypicodeComponent,
+    LoaderComponent,
     //AutoCompleteComponent
   ], 
 
   providers   : [
     CoursesService,
-    TypicodePostService,
+    LoaderPostService,
   ],
 
   bootstrap   : [ AppComponent ]

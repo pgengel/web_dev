@@ -18,7 +18,8 @@ import { Component } from '@angular/core';
                 <div class="body">The css class is selecting the another body</div>
              </panel>
              <zippy title="Expand me">This is content</zippy>
-             <typicode></typicode>
+             <loader></loader>
+             
              `,
 })
 export class AppComponent  { 
