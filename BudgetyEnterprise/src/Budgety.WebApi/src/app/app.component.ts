@@ -3,9 +3,11 @@ import { Router }    from '@angular/router'; // for navigating to a page.
 
 @Component({
   selector: 'my-app',
-  template: `<navbar></navbar>
+  template: `             
+             <navbar></navbar>
+             <loader></loader>
              <router-outlet></router-outlet>
-             
+
              <h1>Hello {{name}} </h1> 
              <courses></courses> 
              <like></like>
@@ -22,7 +24,7 @@ import { Router }    from '@angular/router'; // for navigating to a page.
                 <div class="body">The css class is selecting the another body</div>
              </panel>
              <zippy title="Expand me">This is content</zippy>
-             <loader></loader>
+
              <ul>
               <li><a routerLink="">Home</a><li>
               <li><a routerLink="messages">Messages</a><li>
