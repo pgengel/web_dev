@@ -14,7 +14,7 @@ export class AddUserComponent implements OnInit {
     
     title: string;
     users : Users;
-   
+    result : any;
 
     constructor(private _router : ActivatedRoute, 
                 private _route : Router,
@@ -50,17 +50,17 @@ export class AddUserComponent implements OnInit {
     }
 
     addUser(){
-        var result;
+
         
         if (this.users.id) 
-            result = this._userService.updateUser(this.users);
+            this.result = this._userService.updateUser(this.users);
         else
-            result = this._userService.addUser(this.users.id)
+            this.result = this._userService.addUser(this.users.id)
             
-		result.subscribe(x => {
-            // Ideally, here we'd want:
-            // this.form.markAsPristine();
-            this._route.navigate(['users']);
-        });
+		// this.result.subscribe(x => {
+        //     // Ideally, here we'd want:
+        //     // this.form.markAsPristine();
+        //     this._route.navigate(['users']);
+        //});
     }
 }

@@ -40,6 +40,7 @@ import { CoursesService }       from './courses/courses.service';
 import { LoaderPostService }    from './loader/loader-post.service';
 import { LoaderComponent }      from './loader/loader.component';
 import { UsersService }         from './users/users.service';
+import { PostsService }         from './posts/posts.service';
 
 @NgModule({
   imports: [ 
@@ -88,7 +89,8 @@ import { UsersService }         from './users/users.service';
   providers   : [
     CoursesService,
     LoaderPostService,
-    UsersService
+    UsersService,
+    PostsService
   ],
 
   bootstrap   : [ AppComponent ]

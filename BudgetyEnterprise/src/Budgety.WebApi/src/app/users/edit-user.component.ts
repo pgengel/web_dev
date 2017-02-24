@@ -36,6 +36,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
              });
      }
 
+     saveUser(){
+
+     }
+
     ngOnDestroy(){
         this.subscription.unsubscribe();
     }
