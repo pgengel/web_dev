@@ -20,6 +20,7 @@ import { PanelComponent }         from './panel/panel.component';
 import { ZippyComponent }         from './zippy/zippy.component';
 import { ContactFormComponent }   from './basic-form/contact-form.component';
 import { NavBarComponent }        from './navbar/navbar.component';
+import { SpinnerComponent }        from './spinner/spinner.component';
 //import { AutoCompleteComponent }  from './auto-complete/auto-complete.component'
 import { HttpModule }             from '@angular/http';
 import { JsonpModule }            from '@angular/http';
@@ -72,6 +73,7 @@ import { PostsService }         from './posts/posts.service';
     LoaderComponent,
     NavBarComponent,
     EditUserComponent,
+    SpinnerComponent,
     //AutoCompleteComponent
     
     //routing
