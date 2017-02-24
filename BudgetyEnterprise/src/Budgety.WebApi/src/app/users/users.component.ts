@@ -21,7 +21,6 @@ export class UsersComponent implements OnInit{
         this._userService.getAllUsers()
              .subscribe(users => {
                  this.isLoading = false;
-                 console.log("users" + users);
                  this.users = users;
              });
      }

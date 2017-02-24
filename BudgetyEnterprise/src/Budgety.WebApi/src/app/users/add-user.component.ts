@@ -13,12 +13,12 @@ import { UsernameValidators } from './add-user.validators';
 export class AddUserComponent implements OnInit {
     
     title: string;
-    //users = new Users;
+    users : Users;
    
 
-    constructor(_router : ActivatedRoute) {
-		
-	}
+    constructor(private _router : ActivatedRoute, 
+                private _route : Router,
+                private _userService : UsersService) {	}
 
      addUserForm = new FormGroup({
          name : new FormControl('', Validators.compose(
@@ -30,38 +30,37 @@ export class AddUserComponent implements OnInit {
      });
 
     ngOnInit(){
-        // var id = this._route.params.subscribe(params => {
-        //     var id = params["id"];
+        var id = this._router.params.subscribe(params => {
+            var id = params["id"];
 
-        //       this.title = id ? "Edit User" : "New User";
+              this.title = id ? "Edit User" : "New User";
         
-        // if (!id)
-		// 	return;
+        if (!id)
+			return;
             
-        // this._usersService.getUsers()
-		// 	.subscribe(
-        //         //users => this.users = users,
-        //         response => {
-        //             // if (response.status == 404) {
-        //             //     this._router.navigate(['NotFound']);
-        //             // }
-        //         });
-        // });
+        this._userService.getAllUsers()
+			.subscribe(
+                //users => this.users = users,
+                response => {
+                    // if (response.status == 404) {
+                    //     this._router.navigate(['NotFound']);
+                    // }
+                });
+        });
     }
 
     addUser(){
-        console.log("TODO:add user.");
-        // var result;
+        var result;
         
-        // if (this.users.id) 
-        //     result;// = this._usersService.updateUser(this.users);
-        // else
-        //     result = this._usersService.addUser(this.users)
+        if (this.users.id) 
+            result = this._userService.updateUser(this.users);
+        else
+            result = this._userService.addUser(this.users.id)
             
-		// result.subscribe(x => {
-        //     // Ideally, here we'd want:
-        //     // this.form.markAsPristine();
-        //     this._router.navigate(['users']);
-        //});
+		result.subscribe(x => {
+            // Ideally, here we'd want:
+            // this.form.markAsPristine();
+            this._route.navigate(['users']);
+        });
     }
 }
