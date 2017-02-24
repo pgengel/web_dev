@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from './users.service';
 import { Users }            from './users';
+import { UsernameValidators } from './add-user.validators';
 
 @Component({
     moduleId: module.id,
@@ -20,7 +21,11 @@ export class AddUserComponent implements OnInit {
 	}
 
      addUserForm = new FormGroup({
-         name : new FormControl('', Validators.required),
+         name : new FormControl('', Validators.compose(
+             [  
+                Validators.required,
+                UsernameValidators.cannotContainSpace
+             ])),
          email : new FormControl('', Validators.required)
      });
 
