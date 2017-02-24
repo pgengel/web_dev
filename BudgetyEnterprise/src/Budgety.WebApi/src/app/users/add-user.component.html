@@ -1,6 +1,6 @@
 <h2>Add a User</h2>
 
-<!--<div class="row">
+<div class="row">
     <div class="col-md-6 well">
         <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
             <div class="form-group">
@@ -12,7 +12,7 @@
                     class="form-control" 
                     formControlName="name">
                 <div 
-                    *ngIf="!addUserForm.controls.username.valid"
+                    *ngIf="!addUserForm.controls.name.valid"
                     class="alert alert-danger">Name is required.</div>
                 
                 <label for="email">Email</label>
@@ -26,49 +26,40 @@
                 <label for="phone">Phone</label>
                 <input 
                     type="text" 
-                    class="form-control"
-                    formControlName="phone">
-                <div *ngIf="!addUserForm.controls.phone.valid"
-                     class="alert alert-danger">Phone number is required.</div>
+                    class="form-control">
+              
             </div>
 
             <div class="form-group">
                 <h3>Address</h3> 
                 <label for="street">Street</label>
                 <input 
-                    formControlName="street"
+    
                     type="text"
                     class="form-control">
-                <div *ngIf="!addUserForm.controls.street.valid"
-                     class="alert alert-danger">Street is required.</div>
+     
                 
                 <label for="suite">Suite</label>
                 <input 
                     type="text" 
-                    class="form-control"
-                    formControlName="suite">
-                <div *ngIf="!addUserForm.controls.suite.valid"
-                     class="alert alert-danger">Suite is required.</div>
+                    class="form-control">
+        
                 
                 <label for="city">City</label>
                 <input 
                     type="text" 
-                    class="form-control"
-                    formControlName="city">
-                <div ngIf="!addUserForm.controls.city.valid"
-                     class="alert alert-danger">City number is required.</div>   
+                    class="form-control">
+       
 
                 <label for="zipcode">ZipCode</label>
                 <input 
                     type="text" 
-                    class="form-control"
-                    formControlName="zipcode">
-                <div ngIf="!addUserForm.controls.zipcode.valid"
-                     class="alert alert-danger">ZipCode number is required.</div>   
+                    class="form-control">
+         
             </div>
 
             <button class="btn btn-primary" type="submit">Save</button>    
         </form>
     </div>
-</div>-->
+</div>
 

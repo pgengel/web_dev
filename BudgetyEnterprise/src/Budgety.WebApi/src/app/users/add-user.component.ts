@@ -13,45 +13,35 @@ export class AddUserComponent implements OnInit {
     
     title: string;
     //users = new Users;
-    addUserForm: FormGroup;
+   
 
- constructor(
-        fb: FormBuilder,
-        private _router: Router,
-        private _route: ActivatedRoute,
-        private _usersService: UsersService
-    ) {
-		this.addUserForm = fb.group({
-			name: ['', Validators.required],
-			email: ['', Validators.required],
-			phone: [],
-			address: fb.group({
-				street: [],
-				suite: [],
-				city: [], 
-				zipcode: []
-			})
-		});
+    constructor() {
+		
 	}
 
-    ngOnInit(){
-        var id = this._route.params.subscribe(params => {
-            var id = +params["id"];
+     addUserForm = new FormGroup({
+         name : new FormControl('', Validators.required),
+         email : new FormControl('', Validators.required)
+     });
 
-              this.title = id ? "Edit User" : "New User";
+    ngOnInit(){
+        // var id = this._route.params.subscribe(params => {
+        //     var id = params["id"];
+
+        //       this.title = id ? "Edit User" : "New User";
         
-        if (!id)
-			return;
+        // if (!id)
+		// 	return;
             
-        this._usersService.getUsers()
-			.subscribe(
-                //users => this.users = users,
-                response => {
-                    // if (response.status == 404) {
-                    //     this._router.navigate(['NotFound']);
-                    // }
-                });
-        });
+        // this._usersService.getUsers()
+		// 	.subscribe(
+        //         //users => this.users = users,
+        //         response => {
+        //             // if (response.status == 404) {
+        //             //     this._router.navigate(['NotFound']);
+        //             // }
+        //         });
+        // });
     }
 
     // addUser(){
