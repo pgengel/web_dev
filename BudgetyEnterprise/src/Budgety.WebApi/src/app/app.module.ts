@@ -1,9 +1,11 @@
 import { NgbModule }            from '@ng-bootstrap/ng-bootstrap';
 import { NgModule }             from '@angular/core';
-import { FormsModule }          from '@angular/forms'; 
 import { BrowserModule }        from '@angular/platform-browser';
 import { AppRoutingModule }     from './app-routing.module';
 import { PhotosRoutingModule }  from './photos/photos.routing';
+import { UsersRoutingModule }   from './users/users.routing';
+// Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 
 //for the autocomplete component.
 //import { Observable }    from 'rxjs/Rx';
@@ -29,6 +31,7 @@ import { NotFoundComponent }      from './not-found/not-found.component';
 import { PhotosDetailsComponent}  from './photos/photos-details.component';
 import { PhotosComponent }        from './photos/photos.component'
 import { UsersComponent }         from './users/users.component';
+import { AddUserComponent }       from './users/add-user.component';
 import { PostsComponent }         from './posts/posts.component';
 
 //import files - service
@@ -45,7 +48,13 @@ import { UsersService }         from './users/users.service';
     HttpModule, 
     JsonpModule,
     PhotosRoutingModule,
+    //UsersRoutingModule,
     AppRoutingModule,      // routing
+    
+    // Forms
+    FormsModule,
+    ReactiveFormsModule,
+    
     
  ],
 
@@ -63,7 +72,9 @@ import { UsersService }         from './users/users.service';
     //AutoCompleteComponent
     
     //routing
+    AddUserComponent,
     UsersComponent,
+    AddUserComponent,
     PostsComponent,
     PhotosComponent,
     PhotosDetailsComponent,

@@ -16,4 +16,8 @@ export class UsersService {
         return this._http.get(this._url)
                     .map(res => res.json());
     }
+
+    addUser(body : any){
+        this._http.post(this._url, body);
+    }
 }
