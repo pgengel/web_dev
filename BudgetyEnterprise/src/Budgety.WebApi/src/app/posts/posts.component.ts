@@ -21,7 +21,6 @@ export class PostsComponent implements OnInit {
             .subscribe(posts => {
                 this.isLoading = false;
                 this.posts = posts;
-                console.log("Posts are: " + this.posts);
             });
     }
 
