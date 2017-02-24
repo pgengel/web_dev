@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit{
      }
 
      ngOnInit(){
-        this._userService.getUsers()
+        this._userService.getAllUsers()
              .subscribe(users => {
                  this.isLoading = false;
                  console.log("users" + users);
@@ -26,22 +26,22 @@ export class UsersComponent implements OnInit{
              });
      }
 
-    // deleteUser(users){
-	// 	if (confirm("Are you sure you want to delete " + users.name + "?")) {
-	// 		var index = this.users.indexOf(users)
-	// 		// Here, with the splice method, we remove 1 object
-    //         // at the given index.
-    //         this.users.splice(index, 1);
+    deleteUser(users : Users){
+		if (confirm("Are you sure you want to delete " + users.name + "?")) {
+			var index = this.users.indexOf(users)
+			// Here, with the splice method, we remove 1 object
+            // at the given index.
+            this.users.splice(index, 1);
 
-	// 		this._userService.deleteUser(users.id)
-	// 			.subscribe(null, 
-	// 				err => {
-	// 					alert("Could not delete the user.");
-    //                     // Revert the view back to its original state
-    //                     // by putting the user object at the index
-    //                     // it used to be.
-	// 					this.users.splice(index, 0, users);
-	// 				});
-	// 	}
-	// }
+			this._userService.deleteUser(users.id)
+				.subscribe(null, 
+					err => {
+						alert("Could not delete the user.");
+                        // Revert the view back to its original state
+                        // by putting the user object at the index
+                        // it used to be.
+						this.users.splice(index, 0, users);
+					});
+		}
+	}
 }

@@ -33,6 +33,7 @@ import { PhotosComponent }        from './photos/photos.component'
 import { UsersComponent }         from './users/users.component';
 import { AddUserComponent }       from './users/add-user.component';
 import { PostsComponent }         from './posts/posts.component';
+import { EditUserComponent }         from './users/edit-user.component';
 
 //import files - service
 import { CoursesService }       from './courses/courses.service';
@@ -69,6 +70,7 @@ import { UsersService }         from './users/users.service';
     ContactFormComponent,
     LoaderComponent,
     NavBarComponent,
+    EditUserComponent,
     //AutoCompleteComponent
     
     //routing

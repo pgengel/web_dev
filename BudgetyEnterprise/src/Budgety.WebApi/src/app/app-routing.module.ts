@@ -7,6 +7,7 @@ import { UsersComponent }         from './users/users.component';
 import { AddUserComponent }         from './users/add-user.component';
 import { PostsComponent }         from './posts/posts.component';
 import { NotFoundComponent }      from './not-found/not-found.component';
+import { EditUserComponent }      from './users/edit-user.component';
 
 const routes: Routes = [ //need the const
   { 
@@ -28,6 +29,10 @@ const routes: Routes = [ //need the const
   {
       path      : 'users/add-user',
       component : AddUserComponent
+  },
+  {
+      path      : 'users/:id',
+      component : EditUserComponent
   },
   {
       path      : 'posts',

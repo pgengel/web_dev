@@ -12,12 +12,32 @@ export class UsersService {
     
     constructor(private _http: Http) { }
 
-    getUsers() : Observable<Users[]>{
+    getAllUsers() : Observable<Users[]>{
         return this._http.get(this._url)
                     .map(res => res.json());
     }
 
-    addUser(body : any){
-        this._http.post(this._url, body);
-    }
+    getUser(userId : number){
+		return this._http.get(this.getUserUrl(userId))
+			.map(res => res.json());
+	}
+    
+    addUser(user : number){
+		return this._http.post(this._url, JSON.stringify(user))
+			.map(res => res.json());
+	}
+    
+    updateUser(user : Users){
+		return this._http.put(this.getUserUrl(user.id), JSON.stringify(user))
+			.map(res => res.json());
+	}
+    
+    deleteUser(userId : number){
+		return this._http.delete(this.getUserUrl(userId))
+			.map(res => res.json());
+	}
+    
+    private getUserUrl(userId : number){
+		return this._url + "/" + userId;
+	}
 }

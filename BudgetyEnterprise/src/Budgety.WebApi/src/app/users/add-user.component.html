@@ -14,9 +14,9 @@
                 <div >
                     <div 
                         *ngIf="!addUserForm.controls.name.valid"
-                        class="alert alert-danger">Name is required.</div> 
+                        class="alert alert-danger">Name is required with no spaces.</div> 
                     <div 
-                        *ngIf="!addUserForm.controls.name.cannotContainSpace" 
+                        *ngIf="addUserForm.controls.name.cannotContainSpace" 
                         class="alert alert-danger">Name cannot contain space.
                     </div> 
                 </div>        

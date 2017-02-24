@@ -16,7 +16,7 @@ export class AddUserComponent implements OnInit {
     //users = new Users;
    
 
-    constructor() {
+    constructor(_router : ActivatedRoute) {
 		
 	}
 
@@ -49,18 +49,19 @@ export class AddUserComponent implements OnInit {
         // });
     }
 
-    // addUser(){
-    //     var result;
+    addUser(){
+        console.log("TODO:add user.");
+        // var result;
         
-    //     if (this.users.id) 
-    //         result;// = this._usersService.updateUser(this.users);
-    //     else
-    //         result = this._usersService.addUser(this.users)
+        // if (this.users.id) 
+        //     result;// = this._usersService.updateUser(this.users);
+        // else
+        //     result = this._usersService.addUser(this.users)
             
-	// 	result.subscribe(x => {
-    //         // Ideally, here we'd want:
-    //         // this.form.markAsPristine();
-    //         this._router.navigate(['users']);
-    //     });
-    // }
+		// result.subscribe(x => {
+        //     // Ideally, here we'd want:
+        //     // this.form.markAsPristine();
+        //     this._router.navigate(['users']);
+        //});
+    }
 }
