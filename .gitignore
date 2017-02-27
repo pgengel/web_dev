@@ -4,3 +4,7 @@ node_modules
 dist
 /BudgetyEnterprise/src/Budgety.WebApi/src/app/pipes/*.pdf
 /BudgetyEnterprise/src/Budgety.WebApi/src/app/contact-form/*.pdf
+packages
+obj
+bin
+TestResults
