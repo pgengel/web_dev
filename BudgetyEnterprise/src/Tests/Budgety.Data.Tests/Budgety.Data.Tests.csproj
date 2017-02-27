@@ -56,8 +56,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FunctionalTests\CustomerScenarioTests.cs" />
     <Compile Include="FunctionalTests\DataBaseScenarioTests.cs" />
-    <Compile Include="UnitTests\UnitTest1.cs" />
+    <Compile Include="UnitTests\BudgetContextTests.cs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
