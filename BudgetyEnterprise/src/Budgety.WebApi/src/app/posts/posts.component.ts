@@ -1,6 +1,7 @@
 import { Component, OnInit  }   from '@angular/core';
-import { Post }        from './post';
-import { PostsService } from './posts.service';
+import { Post }                 from './post';
+import { PostComments }         from './post-comments';
+import { PostsService }         from './posts.service';
 
 @Component({
     moduleId: module.id,
@@ -10,9 +11,12 @@ import { PostsService } from './posts.service';
 })
 export class PostsComponent implements OnInit {
     
-    private isLoading       : boolean = true;
+    private postsLoading    : boolean = true;
     private posts           : Post[] = [];
-    currentPost    : Post;
+    private currentPost     : Post;
+
+    private commentPosts     : PostComments[] = [];
+    private currentCommentPost     : PostComments[];
 
     constructor(private _postsService : PostsService){    
     }
@@ -20,14 +24,17 @@ export class PostsComponent implements OnInit {
     ngOnInit(){
         this._postsService.getAllPosts()
             .subscribe(posts => {
-                this.isLoading = false;
+                this.postsLoading = false;
                 this.posts = posts;
             });
     }
 
     selectPost(post : Post){
         this.currentPost = post;
-        console.log("post click");
+        this._postsService.getPostsComments(this.currentPost.id)
+            .subscribe(comments => {
+                this.commentPosts = comments;
+            });
     }
 
 }

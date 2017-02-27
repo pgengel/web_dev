@@ -7,3 +7,11 @@
 	 border-color:	#ecf0f1;	
 	 color:	#2c3e50;
 }
+
+.clickable {
+    cursor: pointer;
+}
+
+.thumbnail {
+    border-radius: 100%;
+}
