@@ -2,6 +2,7 @@ import { Component, OnInit  }   from '@angular/core';
 import { Post }                 from './post';
 import { PostComments }         from './post-comments';
 import { PostsService }         from './posts.service';
+import { UsersService }         from '../users/users.service';
 
 @Component({
     moduleId: module.id,
@@ -19,15 +20,19 @@ export class PostsComponent implements OnInit {
     private commentPosts     : PostComments[] = [];
     private currentCommentPost     : PostComments[];
 
-    constructor(private _postsService : PostsService){    
+    private users : any[] = [];
+    private _userId : number = 1;
+
+    constructor(private _postsService : PostsService, 
+                private _userService : UsersService){    
     }
 
     ngOnInit(){
-        this._postsService.getAllPosts()
-            .subscribe(posts => {
-                this.postsLoading = false;
-                this.posts = posts;
-            });
+
+        this.loadUsers();
+
+        this.loadPosts();
+
     }
 
     selectPost(post : Post){
@@ -37,6 +42,29 @@ export class PostsComponent implements OnInit {
                 this.commentsLoading = false;
                 this.commentPosts = comments;
             });
+    }
+
+    private loadUsers(){
+        this._userService.getAllUsers()
+            .subscribe(users => {
+                this.users = users;
+            });
+    }
+
+    private loadPosts(userId? : number){
+        this.postsLoading = true;
+        this._postsService.getAllPosts(userId)
+            .subscribe(posts => {
+                this.postsLoading = false;
+                this.posts = posts;
+            });  
+
+        console.log("posts: " + this.posts);      
+    }
+
+    reloadPosts(filter : any){
+        this._userId = filter.userId;
+        this.loadPosts(this._userId);
     }
 
 }

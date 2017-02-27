@@ -9,17 +9,28 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PostsService {
 
-    private _postUrl            : string = "https://jsonplaceholder.typicode.com/posts";
+    private _postUrl : string = "https://jsonplaceholder.typicode.com/posts";
+    private _url = "";
+
 
     constructor(private _http: Http) { }
 
-    getAllPosts() : Observable<Post[]>{
-        return this._http.get(this._postUrl)
+    getAllPosts(filter?:number) : Observable<Post[]>{
+
+        var _url = this._postUrl;
+
+        if (filter) {
+
+            _url += "?userId=" + (filter);
+        }
+
+        console.log("The filter is: " + filter);
+
+        return this._http.get(_url)
                     .map(res => res.json());
     }
 
     getPostsComments(postId : number) : Observable<PostComments[]>{
-        console.log(this._postUrl + '/' + postId + '/comments');
         return this._http.get(this._postUrl + '/' + postId + '/comments')
                     .map(res => res.json());
     }
