@@ -12,6 +12,7 @@ import { PostsService }         from './posts.service';
 export class PostsComponent implements OnInit {
     
     private postsLoading    : boolean = true;
+    private commentsLoading    : boolean = true;
     private posts           : Post[] = [];
     private currentPost     : Post;
 
@@ -33,6 +34,7 @@ export class PostsComponent implements OnInit {
         this.currentPost = post;
         this._postsService.getPostsComments(this.currentPost.id)
             .subscribe(comments => {
+                this.commentsLoading = false;
                 this.commentPosts = comments;
             });
     }
