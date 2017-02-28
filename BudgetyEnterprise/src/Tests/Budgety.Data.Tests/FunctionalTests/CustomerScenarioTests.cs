@@ -79,9 +79,9 @@ namespace Budgety.Data.Tests.FunctionalTests
 
                 var customers = bc.GetBudgets();
 
-                Assert.IsTrue(customers.ElementAt(0).Id == 1);
-                Assert.IsTrue(customers.ElementAt(1).Id == 2);
-                Assert.IsTrue(customers.ElementAt(2).Id == 3);
+                Assert.IsTrue(customers.ElementAt(0).FirstName == "new_David");
+                Assert.IsTrue(customers.ElementAt(1).FirstName == "David");
+                Assert.IsTrue(customers.ElementAt(2).FirstName == "1");
             }
         }
 

@@ -63,7 +63,14 @@ namespace Budgety.Data.Contexts
 
         public ICollection<Customer> GetBudgets()
         {
-            return _context.Customers.OrderBy(p => p.Id).ToArray();
+            ICollection<Customer> entity = _context.Customers.OrderBy(p => p.Id).ToArray();
+
+            if (entity == null)
+            {
+
+                throw new NotImplementedException("Need to handle this!");
+            }
+            return entity;
         }
         public Customer GetBudget(int Id)
         {

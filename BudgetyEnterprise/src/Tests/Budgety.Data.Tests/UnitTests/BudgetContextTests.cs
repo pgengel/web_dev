@@ -151,9 +151,9 @@ namespace Budgety.Data.Tests
 
                 var customers = bc.GetBudgets();
 
-                Assert.IsTrue(customers.ElementAt(0).Id == 1);
-                Assert.IsTrue(customers.ElementAt(1).Id == 2);
-                Assert.IsTrue(customers.ElementAt(2).Id == 3);
+                Assert.IsTrue(customers.ElementAt(0).Id == 2);
+                Assert.IsTrue(customers.ElementAt(1).Id == 3);
+                Assert.IsTrue(customers.ElementAt(2).Id == 4);
             }
         }
     }

@@ -25,7 +25,7 @@ namespace Budget.WebApi.Controllers
         {
             try
             {
-                var customers = _budgetContext.GetBudgets().ToList();
+                var customers = _budgetContext.GetBudgets();
 
                 if (customers == null)
                 {
@@ -35,7 +35,7 @@ namespace Budget.WebApi.Controllers
                 return customers;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {                
                 throw new HttpResponseException(HttpStatusCode.InternalServerError); ;
             }
@@ -58,7 +58,7 @@ namespace Budget.WebApi.Controllers
                 return customer;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new HttpResponseException(HttpStatusCode.InternalServerError);
             }
@@ -81,7 +81,7 @@ namespace Budget.WebApi.Controllers
                 return customer;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new HttpResponseException(HttpStatusCode.InternalServerError);
             }
@@ -108,7 +108,7 @@ namespace Budget.WebApi.Controllers
 
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new HttpResponseException(HttpStatusCode.InternalServerError);
             }
@@ -128,7 +128,7 @@ namespace Budget.WebApi.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw new HttpResponseException(HttpStatusCode.InternalServerError);
