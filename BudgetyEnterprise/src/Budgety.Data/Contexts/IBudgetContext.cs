@@ -12,6 +12,7 @@ namespace Budgety.Data.Contexts
         bool CreateBudget(Customer customer);
         bool DeleteBudget(Customer customer);
         bool UpdateBudget(Customer customer);
-        ICollection<Customer> GetBudget();
+        ICollection<Customer> GetBudgets();
+        Customer GetBudget(int Id);
     }
 }

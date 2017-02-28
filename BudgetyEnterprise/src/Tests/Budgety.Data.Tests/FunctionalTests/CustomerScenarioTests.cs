@@ -77,7 +77,7 @@ namespace Budgety.Data.Tests.FunctionalTests
                 bc.CreateBudget(new Customer() { Email = "2@2.com", FirstName = "2", LastName = "b" });
                 bc.CreateBudget(new Customer() { Email = "3@3.com", FirstName = "3", LastName = "c" });
 
-                var customers = bc.GetBudget();
+                var customers = bc.GetBudgets();
 
                 Assert.IsTrue(customers.ElementAt(0).Id == 1);
                 Assert.IsTrue(customers.ElementAt(1).Id == 2);

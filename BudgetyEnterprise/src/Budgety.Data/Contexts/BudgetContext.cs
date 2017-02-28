@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Budgety.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Budgety.Data.Models;
 
 namespace Budgety.Data.Contexts
 {
@@ -36,6 +34,13 @@ namespace Budgety.Data.Contexts
 
         public bool DeleteBudget(Customer customer)
         {
+            Customer entity = _context.Customers.Find(customer.Id);
+
+            if (entity == null)
+            {
+                //throw new NotImplementedException("Need to handle this!");
+                return false;
+            }
             _context.Customers.Remove(customer);
             _context.SaveChanges();
             return true;
@@ -47,7 +52,7 @@ namespace Budgety.Data.Contexts
 
             if (entity == null)
             {
-                throw new NotImplementedException("Need to handle this!");
+                //throw new NotImplementedException("Need to handle this!");
                 return false;
             }
 
@@ -56,9 +61,21 @@ namespace Budgety.Data.Contexts
             return true;
         }
 
-        public ICollection<Customer> GetBudget()
+        public ICollection<Customer> GetBudgets()
         {
             return _context.Customers.OrderBy(p => p.Id).ToArray();
+        }
+        public Customer GetBudget(int Id)
+        {
+            Customer entity = _context.Customers.Find(Id);
+
+            if (entity == null)
+            {
+                throw new NotImplementedException("Need to handle this!");
+
+            }
+
+            return entity;
         }
 
         public void Dispose()
