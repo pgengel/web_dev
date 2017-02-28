@@ -11,3 +11,4 @@ TestResults
 *.suo
 /.gitattributes
 *.pdf
+/BudgetyEnterprise/src/Budget.WebApi/*.user
