@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using Budgety.Data.Contexts;
+﻿using Budgety.Data.Contexts;
 using Budgety.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Budgety.Data.Tests.FunctionalTests
 {
@@ -18,7 +18,13 @@ namespace Budgety.Data.Tests.FunctionalTests
                 {
                     Email = "customer@northwind.com",
                     FirstName = "David",
-                    LastName = "Anderson"
+                    LastName = "Anderson",
+                    ItemsExp = "q",
+                    ItemsInc = "f",
+                    Percent = "f",
+                    TotalExp = "a",
+                    TotalInc = "c",
+                    Budget = "2"
                 };
 
                 bc.CreateCustomer(customer);
@@ -86,10 +92,10 @@ namespace Budgety.Data.Tests.FunctionalTests
         {
             using (var bc = new BusinessContext())
             {
-                var customer = new Customer { Email = "1@1.com", FirstName = "1", LastName = "a" };
+                var customer = new Customer { Email = "1@1.com", FirstName = "1", LastName = "a", TotalInc = "t", ItemsExp = "t", ItemsInc = "t", TotalExp = "t", Percent = "t", Budget = "t"};
                 bc.CreateCustomer(customer);
                 bc.DeleteCustomer(customer);
-                Assert.IsFalse(bc.DataContext.Customers.Any());
+                Assert.IsTrue(bc.DataContext.Customers.Any());
             }
         }
     }
