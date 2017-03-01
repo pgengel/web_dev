@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace EnterpriseAngular2.WebApi
+namespace Budgety.WebApi
 {
     public class BundleConfig
     {

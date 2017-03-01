@@ -1,9 +1,9 @@
-﻿using Microsoft.Practices.Unity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
+using Microsoft.Practices.Unity;
 
-namespace EnterpriseAngular2.WebApi.App_Start
+namespace Budgety.WebApi
 {
     public class UnityResolver : IDependencyResolver
     {

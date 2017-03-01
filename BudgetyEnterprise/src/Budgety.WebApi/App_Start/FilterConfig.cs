@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace EnterpriseAngular2.WebApi
+namespace Budgety.WebApi
 {
     public class FilterConfig
     {

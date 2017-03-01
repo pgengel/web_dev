@@ -12,13 +12,6 @@ namespace EnterpriseAngular2.WebApi
         public void Configuration(IAppBuilder app)
         {
 
-            //var container = new UnityContainer();
-
-            //container.RegisterType<IBusinessContext, BusinessContext>();
-            //container.RegisterType<ValuesController>();
-
-            //container.Resolve<ValuesController>();
-
             ConfigureAuth(app);
         }
     }

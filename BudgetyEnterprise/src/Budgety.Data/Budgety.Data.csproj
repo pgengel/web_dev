@@ -52,10 +52,19 @@
     <Compile Include="Contexts\BusinessContext.cs" />
     <Compile Include="Contexts\DataContext.cs" />
     <Compile Include="Contexts\IBusinessContext.cs" />
+    <Compile Include="Migrations\201703011159292_extendedmodel.cs" />
+    <Compile Include="Migrations\201703011159292_extendedmodel.Designer.cs">
+      <DependentUpon>201703011159292_extendedmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703011159292_extendedmodel.resx">
+      <DependentUpon>201703011159292_extendedmodel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -19,12 +19,12 @@ namespace Budgety.Data.Tests.FunctionalTests
                     Email = "customer@northwind.com",
                     FirstName = "David",
                     LastName = "Anderson",
-                    ItemsExp = "q",
-                    ItemsInc = "f",
-                    Percent = "f",
-                    TotalExp = "a",
-                    TotalInc = "c",
-                    Budget = "2"
+                    //ItemsExp = "q",
+                    //ItemsInc = "f",
+                    //Percent = "f",
+                    //TotalExp = "a",
+                    //TotalInc = "c",
+                    //Budget = "2"
                 };
 
                 bc.CreateCustomer(customer);
@@ -92,7 +92,15 @@ namespace Budgety.Data.Tests.FunctionalTests
         {
             using (var bc = new BusinessContext())
             {
-                var customer = new Customer { Email = "1@1.com", FirstName = "1", LastName = "a", TotalInc = "t", ItemsExp = "t", ItemsInc = "t", TotalExp = "t", Percent = "t", Budget = "t"};
+                var customer = new Customer { Email = "1@1.com",
+                    FirstName = "1", LastName = "a",
+                    //TotalInc = "t",
+                    //ItemsExp = "t",
+                    //ItemsInc = "t",
+                    //TotalExp = "t",
+                    //Percent = "t",
+                    //Budget = "t"
+                };
                 bc.CreateCustomer(customer);
                 bc.DeleteCustomer(customer);
                 Assert.IsTrue(bc.DataContext.Customers.Any());

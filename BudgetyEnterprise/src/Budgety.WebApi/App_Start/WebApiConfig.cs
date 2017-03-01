@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Budgety.Data.Contexts;
-using EnterpriseAngular2.WebApi.App_Start;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
-using Newtonsoft.Json.Serialization;
 
-namespace EnterpriseAngular2.WebApi
+namespace Budgety.WebApi
 {
     public static class WebApiConfig
     {

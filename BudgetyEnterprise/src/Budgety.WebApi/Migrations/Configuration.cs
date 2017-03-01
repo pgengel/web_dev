@@ -1,18 +1,16 @@
-namespace EnterpriseAngular2.WebApi.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System.Data.Entity.Migrations;
+using Budgety.WebApi.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EnterpriseAngular2.WebApi.Models.ApplicationDbContext>
+namespace Budgety.WebApi.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EnterpriseAngular2.WebApi.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

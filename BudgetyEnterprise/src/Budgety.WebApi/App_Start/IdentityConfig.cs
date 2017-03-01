@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Budgety.WebApi.Models;
+using EnterpriseAngular2.WebApi.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using EnterpriseAngular2.WebApi.Models;
 
-namespace EnterpriseAngular2.WebApi
+namespace Budgety.WebApi
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
