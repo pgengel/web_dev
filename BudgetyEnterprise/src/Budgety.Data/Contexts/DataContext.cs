@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EnterpriseAngular2.Data.Models;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Budgety.Data.Models;
 
-namespace Budgety.Data
+namespace EnterpriseAngular2.Data.Contexts
 {
     public class DataContext : DbContext
     {
