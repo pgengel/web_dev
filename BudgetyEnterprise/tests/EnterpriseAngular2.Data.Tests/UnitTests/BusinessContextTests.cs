@@ -1,11 +1,11 @@
-﻿using EnterpriseAngular2.Data.Contexts;
-using EnterpriseAngular2.Data.Models;
-using EnterpriseAngular2.Data.Tests.FunctionalTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Linq;
+using Budgety.Data.Contexts;
+using Budgety.Data.Models;
+using Budgety.Data.Tests.FunctionalTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseMVVM.Data.Tests.UnitTests
+namespace Budgety.Data.Tests.UnitTests
 {
     [TestClass]
     public class BusinessContextTests : DatabaseScenarioTests

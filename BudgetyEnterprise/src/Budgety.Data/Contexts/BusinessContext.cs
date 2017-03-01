@@ -1,9 +1,9 @@
-﻿using EnterpriseAngular2.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Budgety.Data.Models;
 
-namespace EnterpriseAngular2.Data.Contexts
+namespace Budgety.Data.Contexts
 {
     public sealed class BusinessContext : IDisposable, IBusinessContext
     {

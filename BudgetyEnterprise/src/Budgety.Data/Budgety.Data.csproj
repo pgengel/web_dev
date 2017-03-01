@@ -7,8 +7,8 @@
     <ProjectGuid>{B3092839-2143-447A-BA39-DCC518430EAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnterpriseAngular2.Data</RootNamespace>
-    <AssemblyName>EnterpriseAngular2.Data</AssemblyName>
+    <RootNamespace>Budgety.Data</RootNamespace>
+    <AssemblyName>Budgety.Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,7 +1,7 @@
-﻿using EnterpriseAngular2.Data.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using Budgety.Data.Models;
 
-namespace EnterpriseAngular2.Data.Contexts
+namespace Budgety.Data.Contexts
 {
     public class DataContext : DbContext
     {

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using EnterpriseAngular2.Data.Contexts;
-using EnterpriseAngular2.Data.Models;
+using Budgety.Data.Contexts;
+using Budgety.Data.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseAngular2.Data.Tests.FunctionalTests
+namespace Budgety.Data.Tests.FunctionalTests
 {
     [TestClass]
     public class CustomerScenarioTest : DatabaseScenarioTests

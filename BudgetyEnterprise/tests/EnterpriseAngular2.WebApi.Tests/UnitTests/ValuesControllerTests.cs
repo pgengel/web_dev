@@ -1,12 +1,14 @@
-﻿using EnterpriseAngular2.Data.Contexts;
-using EnterpriseAngular2.Data.Models;
+﻿using Budgety.Data.Contexts;
 using EnterpriseAngular2.WebApi.Controllers;
 using NSubstitute;
 using NUnit.Framework;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using Budgety.Data.Models;
+using Budgety.WebApi.Controllers;
 
-namespace EnterpriseAngular2.WebApi.Tests.UnitTests
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace Budgety.WebApi.Tests.UnitTests
 {
     [TestFixture]
     public class ValuesControllerTests

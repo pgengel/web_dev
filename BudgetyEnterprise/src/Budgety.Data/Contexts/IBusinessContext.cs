@@ -1,7 +1,7 @@
-﻿using EnterpriseAngular2.Data.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Budgety.Data.Models;
 
-namespace EnterpriseAngular2.Data.Contexts
+namespace Budgety.Data.Contexts
 {
     public interface IBusinessContext
     {

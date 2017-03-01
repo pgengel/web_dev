@@ -1,5 +1,4 @@
-﻿using EnterpriseAngular2.Data.Contexts;
-using EnterpriseAngular2.WebApi.Controllers;
+﻿using EnterpriseAngular2.WebApi.Controllers;
 using Microsoft.Owin;
 using Microsoft.Practices.Unity;
 using Owin;

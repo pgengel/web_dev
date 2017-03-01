@@ -1,5 +1,5 @@
-﻿using EnterpriseAngular2.Data.Contexts;
-using EnterpriseAngular2.Data.Models;
+﻿using Budgety.Data.Contexts;
+using Budgety.Data.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,8 +7,7 @@ using System.Collections.ObjectModel;
 using System.Web.Http;
 using System.Web.WebPages;
 
-
-namespace EnterpriseAngular2.WebApi.Controllers
+namespace Budgety.WebApi.Controllers
 {
     //[Authorize]
     public class ValuesController : ApiController
